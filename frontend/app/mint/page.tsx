@@ -17,15 +17,15 @@ import Age from '@/components/AgeSelectbox';
 import Weather from '@/components/WeatherSelectbox';
 import Environment from '@/components/EnvironmentSelectbox';
 import Season from '@/components/SeasonSelectbox';
-import { ages, weathers, seasons, environments } from '@/lib/data/PromptData';
+import { ages, weathers, seasons, environments, buildings } from '@/lib/data/PromptData';
 import MyCombobox from '@/components/combobox';
+import { Spinner } from '@nextui-org/react';
 
 
 
 export type DataType = { building_name: string; }
 import { parseEther } from 'viem';
 import erc20ABI from '@/contracts/ERC20ABI.json';
-import Ages from '@/components/AgeSelectbox';
 
 
 
@@ -40,6 +40,17 @@ const Minting = () => {
   const [nftName, setNftName] = useState<string>("");
   const [fileURL, setFileURL] = useState<string>("");
   const [isProcess, setIsProcess] = useState<boolean>(false);
+
+
+  const handleUpload = () => {
+    setIsUploading(true);
+
+    // Your upload logic here
+
+    setTimeout(() => {
+      setIsUploading(false);
+    }, 45000);
+  };
 
   const {
     data: hash,
@@ -118,10 +129,8 @@ const Minting = () => {
   const [season, setSeason] = useState(seasons[0])
   const [weather, setWeather] = useState(weathers[0])
   const [environment, setEnvironment] = useState(environments[0])
-  const [selected, setSelected] = useState<DataType>({ building_name: "Willow Heights Apartments" })
-
-
-  let prompt = inputVal + " and " + selected.building_name + " of New York City " + age.name + ", in " + season.name + " " + environment.name;
+  const [building, setBuilding] = useState(buildings[0])
+  let prompt = inputVal + " and " + building.name + " of New York City " + age.name + ", in " + season.name + " " + environment.name;
   console.log(prompt);
 
   const GenerateImage = () => {
@@ -131,7 +140,7 @@ const Minting = () => {
     var raw = JSON.stringify({
       "key": "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
       prompt: prompt,
-      "negative_prompt": "bad quality",
+      "negative_prompt": "bad quality, ",
       "width": "512",
       "height": "512",
       "safety_checker": false,
@@ -154,6 +163,10 @@ const Minting = () => {
       .then(result => {
         console.log(result)
         const resultImage = JSON.parse(result);
+        if (resultImage.status === 'error') {
+          alert(resultImage.message);
+          return;
+        }
         console.log(resultImage.output);
         const imageData = resultImage.output;
         setGenImg(imageData)
@@ -172,7 +185,7 @@ const Minting = () => {
       <Sidebar />
       <Content>
         <>
-          <div className="flex flex-col gap-8 px-8 py-4">
+          <div className="flex flex-col gap-8 px-8 py-4" color='primary'>
             <div className="flex justify-center">
               <h1 className="text-center text-3xl">Mint your NFT!</h1>
             </div>
@@ -202,16 +215,16 @@ const Minting = () => {
                 />
               </div>
               <div>
-                <Building params={{ selected, setSelected }} />
-                <div className="flex w-full flex-wrap md:flex-nowrap gap-4 py-5">
+                <Building building={building} setBuilding={setBuilding} />
+                <div className="flex w-full flex-wrap md:flex-nowrap gap-4 pb-3">
                   <Age age={age} setAge={setAge} />
                   <Season season={season} setSeason={setSeason} />
                   <Environment environment={environment} setEnvironment={setEnvironment} />
                   <Weather weather={weather} setWeather={setWeather} />
                 </div>
               </div>
-              <Button className='py-5' color='primary' variant='bordered' onClick={GenerateImage}>Generate Image</Button>
-              <div className='grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4'>
+              <Button color='primary' variant='bordered' onClick={GenerateImage}>Generate Image</Button>
+              <div className='grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 py-5'>
                 <ImageCard imgSrc={genImg[0]} />
                 <ImageCard imgSrc={genImg[1]} />
                 <ImageCard imgSrc={genImg[2]} />
