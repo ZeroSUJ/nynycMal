@@ -9,6 +9,7 @@ export default function Building(props: any) {
   return (
     <Autocomplete
       value={building}
+      defaultSelectedKey={"Willow Heights Apartments"}
       onChange={(e) => setBuilding({ name: e.target.value })}
       items={buildings}
       label="Select a building"

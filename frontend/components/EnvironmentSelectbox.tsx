@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { environments } from "@/lib/data/PromptData";
+
+
 export default function Environment(props: any) {
 
   const { environment, setEnvironment } = props;
@@ -9,6 +11,7 @@ export default function Environment(props: any) {
     <Select
       value={environment}
       onChange={(e) => setEnvironment({ name: e.target.value })}
+      defaultSelectedKeys={["At the edge of a pristine waterfall"]}
       items={environments}
       label="Environment"
       className="max-w-s"
