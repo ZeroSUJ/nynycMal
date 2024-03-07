@@ -185,7 +185,7 @@ const Minting = () => {
       <Sidebar />
       <Content>
         <>
-          <div className="flex flex-col gap-8 px-8 py-4" color='primary'>
+          <div className="flex flex-col gap-8 px-8 py-4">
             <div className="flex justify-center">
               <h1 className="text-center text-3xl">Mint your NFT!</h1>
             </div>
@@ -195,7 +195,6 @@ const Minting = () => {
                 aria-label="Anchor"
                 indicator={<FaImage />}
                 title="Show samples"
-                suppressHydrationWarning
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4">
                   <ImageCard imgSrc="./back.png" />

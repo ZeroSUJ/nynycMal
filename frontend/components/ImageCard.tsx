@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardFooter, Button, CardHeader, CardBody, Image } from "@nextui-org/react";
-import { HeartIcon } from "@heroicons/react/24/outline";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function App(props: any) {
 
@@ -27,7 +27,7 @@ export default function App(props: any) {
           variant="light"
           onPress={() => setLiked((v) => !v)}
         >
-          <HeartIcon
+          <CheckIcon
             className={liked ? "[&>path]:stroke-transparent" : ""}
             fill={liked ? "currentColor" : "none"}
           />

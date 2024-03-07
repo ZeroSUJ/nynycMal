@@ -11,8 +11,10 @@ export default function Season(props: any) {
       value={season}
       onChange={(e) => setSeason({ name: e.target.value })}
       items={seasons}
+      defaultSelectedKeys={["Spring"]}
       label="Seasons"
       className="max-w-s"
+      
     >
       {(season) => <SelectItem key={season.name} style={{ color: 'white' }}>{season && season.name}</SelectItem>}
     </Select >
