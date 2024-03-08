@@ -58,6 +58,7 @@ const Minting = () => {
   const [fileURL, setFileURL] = useState<string>("");
   const [isProcess, setIsProcess] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
+  const [selectedList, setSelectedList] = useState([]);
 
   // const handleUpload = () => {
   //   setIsUploading(true);
@@ -126,9 +127,10 @@ const Minting = () => {
     // }
     // _uploadMetaData(nftName, result?.pinataURL).then(async(res)=>{
     console.log("genImg:", genImg);
-    for (let i = 0; i < genImg.length; i++) {
-      console.log("img : ", genImg[i]);
-      const uploadRes = await _uploadMetaData(nftName, genImg[i]);
+    for (let i = 0; i < selectedList.length; i++) {
+      const it = selectedList[i] - 1;
+      console.log("img : ", genImg[it]);
+      const uploadRes = await _uploadMetaData(nftName, genImg[it]);
       if (uploadRes.success === true) {
         showToast("success", "Successfully uploaded");
         console.log("uploaded Metadata url:", uploadRes?.pinataURL);
@@ -265,10 +267,10 @@ const Minting = () => {
                   <p className="text-center text-xl uppercase">Please choose imgages</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 pt-8">
-                  <ImageCard imgSrc={genImg[0]} />
-                  <ImageCard imgSrc={genImg[1]} />
-                  <ImageCard imgSrc={genImg[2]} />
-                  <ImageCard imgSrc={genImg[3]} />
+                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={1} imgSrc={genImg[0]} />
+                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={2} imgSrc={genImg[1]} />
+                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={3} imgSrc={genImg[2]} />
+                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={4} imgSrc={genImg[3]} />
                 </div>
               </div>
             </div>
