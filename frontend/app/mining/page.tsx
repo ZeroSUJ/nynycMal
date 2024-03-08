@@ -212,17 +212,17 @@ const Mining = () => {
             <Miners className='flex items-center py-1' name="My rewards" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Frewards.90435076.png&w=96&q=75" number="0.0000" unit="BNB" />
             <form className='flex flex-col lg:px-4'>
               <div className='mt-8 flex items-center justify-between'>
-                <p className='text-lg lg:text-xxl'>MIN:
+                <p className='text-lg lg:text-xl'>MIN:
                   <span>0.01 BNB</span>
                 </p>
                 <hr className='hidden w-1/3 opacity-40 lg:inline-block' />
-                <p className='text-lg lg:text-xxl'>MAX:
+                <p className='text-lg lg:text-xl'>MAX:
                   <span>20 BNB</span>
                 </p>
               </div>
-              <div className='mt-3 flex items-center justify-between rounded-lg border-2 border-neutral-400 bg-[#27272a] px-4 py-3'>
+              <div className='mt-3 flex items-center justify-between rounded-lg border-neutral-400 bg-[#27272a] px-4 py-3'>
                 <input
-                  className='w-full bg-transparent text-xxl font-bold focus:outline-none'
+                  className='w-full bg-transparent text-xl focus:outline-none'
                   type='number'
                   step='0.01'
                   min='0.01'

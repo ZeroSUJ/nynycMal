@@ -14,8 +14,8 @@ export default function Miners(props: any) {
                 src={props.url}
             /> */}
             <h3 className="flex-grow text-xl">{props.name}</h3>
-            <span className="ml-2 text-xl font-bold text-blue-500">{props.number}</span>
-            <span className="ml-2 text-xl font-bold">{props.unit}</span>
+            <span className="ml-2 text-xl text-blue-500">{props.number}</span>
+            <span className="ml-2 text-xl">{props.unit}</span>
         </div>
     );
 }
