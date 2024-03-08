@@ -80,7 +80,7 @@ export default function Home() {
               <h1 className="font-bold text-md">ABOUT</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className="text-md my-1" href="./NYNYC_whitepaper.pdf">WhitePaper</Link>
+                <Link className="text-md my-1 hover:text-white hover:border-b-1" href="./NYNYC_whitepaper.pdf">WhitePaper</Link>
                 <Link className="text-md my-1" href="/comingSoon">Documentation</Link>
                 <Link className="text-md my-1" href="/comingSoon">CoinMarketCap</Link>
                 <Link className="text-md my-1" href="/comingSoon">CoinGecko</Link>
