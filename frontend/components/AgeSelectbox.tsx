@@ -15,7 +15,7 @@ export default function Age(props: any) {
       label="Ages"
       className="max-w-s"
     >
-      {(age) => <SelectItem key={age.name} style={{ color: 'white' }}>{age && age.name}</SelectItem>}
+      {(age) => <SelectItem className="fixed" key={age.name} style={{ color: 'white' }}>{age && age.name}</SelectItem>}
     </Select >
   );
 }
