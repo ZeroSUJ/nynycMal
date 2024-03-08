@@ -169,7 +169,8 @@ const Minting = () => {
   console.log(prompt);
 
   const GenerateImage = () => {
-    const [showSpinner, setShowSpinner] = useState(false);
+    // const [showSpinner, setShowSpinner] = useState(false);
+    
 
     setIsGenerating(true);
     var myHeaders = new Headers();
