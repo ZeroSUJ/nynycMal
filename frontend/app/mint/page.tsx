@@ -127,7 +127,8 @@ const Minting = () => {
     // _uploadMetaData(nftName, result?.pinataURL).then(async(res)=>{
     console.log("genImg:", genImg);
     for (let i = 0; i < genImg.length; i++) {
-      console.log("img : ", genImg[i]);
+      // console.log("img : ", genImg[i]);
+      console.log()
       const uploadRes = await _uploadMetaData(nftName, genImg[i]);
       if (uploadRes.success === true) {
         showToast("success", "Successfully uploaded");
@@ -167,7 +168,8 @@ const Minting = () => {
   console.log(prompt);
 
   const GenerateImage = () => {
-    const [showSpinner, setShowSpinner] = useState(false);
+    // const [showSpinner, setShowSpinner] = useState(false);
+    
 
     setIsGenerating(true);
     var myHeaders = new Headers();
