@@ -185,7 +185,7 @@ const Minting = () => {
       <Sidebar />
       <Content>
         <>
-          <div className="flex flex-col gap-8 px-8 py-4">
+          <div className="flex flex-col gap-8 px-8 py-4 ">
             <div className="flex justify-center">
               <h1 className="text-center text-3xl">Mint your NFT!</h1>
             </div>

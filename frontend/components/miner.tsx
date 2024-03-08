@@ -1,9 +1,8 @@
 import React from "react";
-import { User } from "@nextui-org/react";
 
 export default function Miners(props: any) {
     return (
-        <div className="flex items-center">
+        <div className="flex items-center Card rounded-2xl border-2 border-neutral-400 bg-[#27272a] py-2 px-4">
             <img
                 alt="mining"
                 loading="lazy"
@@ -15,8 +14,8 @@ export default function Miners(props: any) {
                 src={props.url}
             />
             <h3 className="flex-grow text-lg lg:text-2xl">{props.name}</h3>
-            <span className="ml-2 text-xl font-bold text-orange-500 lg:text-2xl">{props.number}</span>
-            <span className="ml-2 text-xl font-bold lg:text-2xl">{props.unit}</span>
+            <span className="ml-2 text-xl font-bold text-blue-500 lg:text-2xl">{props.number}</span>
+            <span className="ml-2 text-xl font-bold lg:text-2xl pr-3">{props.unit}</span>
         </div>
     );
 }

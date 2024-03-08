@@ -6,9 +6,9 @@ const Content: React.FC<ContentProps> = ({ children }) => {
   return (
     <div
       id="content"
-      className="col-span-12 sm:col-span-9 lg:col-span-10 h-[calc(100vh - 8.75em)] overflow-y-auto"
+      className="col-span-12 sm:col-span-9 lg:col-span-10 overflow-y-auto rounded-tl-3xl"
     >
-      <div className="w-full h-[your-desired-height] bg-neutral-900">
+      <div className="w-full bg-neutral-900">
         {children}
       </div>
     </div>
