@@ -8,6 +8,7 @@ import { headers } from 'next/headers'
 import { cookieToInitialState } from 'wagmi'
 
 import { config } from '@/config'
+
 import ContextProvider from '@/context'
 
 import {Providers} from "./providers";
@@ -31,7 +32,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
 
   const initialState = cookieToInitialState(config, headers().get('cookie'))
 

@@ -84,7 +84,7 @@ export default function Home() {
                 <Link className="text-md my-1" href="/comingSoon">Documentation</Link>
                 <Link className="text-md my-1" href="/comingSoon">CoinMarketCap</Link>
                 <Link className="text-md my-1" href="/comingSoon">CoinGecko</Link>
-                <Link className="text-md my-1" href="/comingSoon">Disclaimer</Link>
+                <Link className="text-md my-1" href="/disclaimer">Disclaimer</Link>
               </div>
             </div>
             <div className="flex flex-col text-center items-center xl:text-left xl:items-start">
