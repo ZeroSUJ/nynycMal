@@ -6,28 +6,29 @@ const token = process.env.NEXT_APP_PINATA_JWT;
 
 
 export const uploadJSONToIPFS = async(JSONBody) => {
+  return new Promise((resolve, reject)=>{
+    const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
+    //making axios POST request to Pinata ⬇️
+    axios
+      .post(url, JSONBody, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(function (response) {
+        resolve({
+            success: true,
+            pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
+        });
+      })
+      .catch(function (error) {
+        console.log(error)
+        reject({
+            success: false,
+            message: error.message,
+        });
 
-  const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
-  //making axios POST request to Pinata ⬇️
-  return axios
-    .post(url, JSONBody, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(function (response) {
-      return {
-          success: true,
-          pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
-      };
-    })
-    .catch(function (error) {
-      console.log(error)
-      return {
-          success: false,
-          message: error.message,
-      }
-
+    });
   });
 };
 
