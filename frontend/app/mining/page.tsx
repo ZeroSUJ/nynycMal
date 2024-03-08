@@ -232,7 +232,7 @@ const Mining = () => {
                   onChange={handleChange}
                 ></input>
                 <div className='flex gap-4'>
-                  <img
+                  {/* <img
                     alt="minus icon"
                     loading="lazy"
                     width="24"
@@ -253,7 +253,7 @@ const Mining = () => {
                     className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
                     src="https://www.minucoin.com/_next/static/media/plus.64cfad37.svg"
                     onClick={handlePlusClick}
-                  ></img>
+                  ></img> */}
                 </div>
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
@@ -292,7 +292,7 @@ const Mining = () => {
         </div>
         <div className="px-6 pt-8 pb-12">
           <div className="mt-3 rounded-xl border-2 border-neutral-400 bg-black px-3 py-6">
-            <p className="text-center text-3xl uppercase">Daily Profit: UP TO 5%</p>
+            <p className="text-center text-3xl uppercase">Profit: UP TO 5%</p>
             <p className="text-center mt-2 text-3xl uppercase">TAX: 2%</p>
           </div>
         </div>
