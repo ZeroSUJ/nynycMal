@@ -59,15 +59,15 @@ const Minting = () => {
   const [isProcess, setIsProcess] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
-  const handleUpload = () => {
-    setIsUploading(true);
+  // const handleUpload = () => {
+  //   setIsUploading(true);
 
-    // Your upload logic here
+  //   // Your upload logic here
 
-    setTimeout(() => {
-      setIsUploading(false);
-    }, 45000);
-  };
+  //   setTimeout(() => {
+  //     setIsUploading(false);
+  //   }, 45000);
+  // };
 
   const {
     data: hash,
@@ -167,6 +167,8 @@ const Minting = () => {
   console.log(prompt);
 
   const GenerateImage = () => {
+    const [showSpinner, setShowSpinner] = useState(false);
+
     setIsGenerating(true);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -216,7 +218,7 @@ const Minting = () => {
     });
 
   return (
-    <div className="grid grid-cols-12 w-full h-screen bg-[#090808]">
+    <div className="grid grid-cols-12  w-full h-screen bg-[#090808]">
       <Navbar />
       <Sidebar />
       <Content>
@@ -225,65 +227,76 @@ const Minting = () => {
             <div className="flex justify-center">
               <h1 className="text-center text-3xl">Mint your NFT!</h1>
             </div>
-            <Accordion suppressHydrationWarning variant="splitted">
-              <AccordionItem
-                key="anchor"
-                aria-label="Anchor"
-                indicator={<FaImage />}
-                title="Show samples"
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4">
-                  <ImageCard imgSrc="./back.png" />
-                  <ImageCard imgSrc="./back2.png" />
-                  <ImageCard imgSrc="./back3.png" />
-                  <ImageCard imgSrc="./back4.png" />
+            <p className="px-5 pt-2 text-xl">Examples</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-6 gap-4">
+              <ImageCard imgSrc="./back.png" />
+              <ImageCard imgSrc="./back2.png" />
+              <ImageCard imgSrc="./back3.png" />
+              <ImageCard imgSrc="./back4.png" />
+              <ImageCard imgSrc="./back.png" />
+              <ImageCard imgSrc="./back2.png" />
+            </div>
+            <div className="flex flex-col gap-12 p-2 lg:flex-row">
+              <div className="flex w-full flex-col">
+                <div className="bg-white-900 flex justify-center items-center">
+                  <Input
+                    value={inputVal}
+                    onChange={(e) => setInputVal(e.target.value)}
+                    type="text"
+                    label="Imagine"
+                  />
                 </div>
-              </AccordionItem>
-            </Accordion>
-            <div>
-              <div className="bg-white-900 flex justify-center items-center">
-                <Input
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  type="text"
-                  label="Imagine"
-                />
-              </div>
-              <div>
                 <Building building={building} setBuilding={setBuilding} />
                 <div className="flex w-full flex-wrap md:flex-nowrap gap-4 pb-3">
                   <Age age={age} setAge={setAge} />
                   <Season season={season} setSeason={setSeason} />
+                </div>
+                <div className="flex w-full flex-wrap md:flex-nowrap gap-4 pb-3">
                   <Environment
                     environment={environment}
                     setEnvironment={setEnvironment}
                   />
                   <Weather weather={weather} setWeather={setWeather} />
                 </div>
-              </div>
-              <Button
-                color="primary"
-                variant="bordered"
-                onClick={GenerateImage}
-                isLoading={isGenerating}
-              >
-                {isGenerating ? "Generating now..." : "Generate Image"}
-              </Button>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 py-5">
-                <ImageCard imgSrc={genImg[0]} />
-                <ImageCard imgSrc={genImg[1]} />
-                <ImageCard imgSrc={genImg[2]} />
-                <ImageCard imgSrc={genImg[3]} />
               </div>
-              <Button
-                onPress={onOpen}
-                className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-              >
-                Mint NFT
-              </Button>
+              <div className="flex flex-col w-full">
+                <div className=" rounded-xl border-2 border-neutral-400 bg-black px-3 py-2">
+                  <p className="text-center text-xl uppercase">Please choose imgages</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 pt-8">
+                  <ImageCard imgSrc={genImg[0]} />
+                  <ImageCard imgSrc={genImg[1]} />
+                  <ImageCard imgSrc={genImg[2]} />
+                  <ImageCard imgSrc={genImg[3]} />
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-8 lg:flex-row pb-2">
+              <div className="flex w-full justify-center">
+                <Button
+                  className="px-5"
+                  color="primary"
+                  variant="bordered"
+                  onClick={GenerateImage}
+                  isLoading={isGenerating}
+                >
+                  {isGenerating ? "Generating now..." : "Generate Image"}
+                </Button>
+              </div>
+              <div className="flex w-full justify-center">
+                <Button
+                  className="px-10"
+                  onPress={onOpen}
+                  color="primary"
+                  variant="bordered"
+                >
+                  Mint NFT
+                </Button>
+              </div>
             </div>
           </div>
+
           <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent>
               {(onClose) => (
