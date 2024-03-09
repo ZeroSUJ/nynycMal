@@ -10,12 +10,12 @@ export default function Age(props: any) {
     <Select
       value={age}
       onChange={(e) => setAge({ name: e.target.value })}
-      defaultSelectedKeys={["In modern times"]}
       items={ages}
+      defaultSelectedKeys={["In modern times"]}
       label="Ages"
       className="max-w-s"
     >
-      {(age) => <SelectItem className="fixed" key={age.name} style={{ color: 'white' }}>{age && age.name}</SelectItem>}
+      {(age) => <SelectItem key={age.name} style={{ color: 'white' }}>{age && age.name}</SelectItem>}
     </Select >
   );
 }

@@ -1,14 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import nftmAbi from "@/contracts/Marketplace.json";
-import { uploadFileToIPFS, uploadJSONToIPFS } from "./pinata";
+import { uploadJSONToIPFS } from "./pinata";
 import Content from "@/components/Content";
 import ImageCard from "@/components/ImageCard";
-import { Accordion, AccordionItem } from "@nextui-org/react";
 
-import { FaEye, FaImage, FaImages } from "react-icons/fa";
+import { FaImages } from "react-icons/fa";
 import {
   Modal,
   ModalContent,
@@ -17,13 +16,10 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
 } from "@nextui-org/react";
 import { showToast } from "@/helper/ToastNotify";
 import {
-  type BaseError,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
@@ -39,12 +35,11 @@ import {
   environments,
   buildings,
 } from "@/lib/data/PromptData";
-import MyCombobox from "@/components/combobox";
-import { Spinner } from "@nextui-org/react";
 
 export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
+ 
 
 const Minting = () => {
   const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
