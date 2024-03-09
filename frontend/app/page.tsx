@@ -80,31 +80,31 @@ export default function Home() {
               <h1 className="font-bold text-md">ABOUT</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className="text-md my-1 hover:text-white hover:border-b-1" href="./NYNYC_whitepaper.pdf">WhitePaper</Link>
-                <Link className="text-md my-1" href="/comingSoon">Documentation</Link>
-                <Link className="text-md my-1" href="/comingSoon">CoinMarketCap</Link>
-                <Link className="text-md my-1" href="/comingSoon">CoinGecko</Link>
-                <Link className="text-md my-1" href="/disclaimer">Disclaimer</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="./NYNYC_whitepaper.pdf">WhitePaper</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">Documentation</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinMarketCap</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinGecko</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/disclaimer">Disclaimer</Link>
               </div>
             </div>
             <div className="flex flex-col text-center items-center xl:text-left xl:items-start">
               <h1 className="font-bold text-md">ECOSYSTEM</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className='text-md my-1' href='/mint'>NFT mint</Link>
-                <Link className='text-md my-1' href="/comingSoon">Staking</Link>
-                <Link className='text-md my-1' href="/comingSoon">Game</Link>
-                <Link className='text-md my-1' href="/comingSoon">Mining BNB</Link>
-                <Link className='text-md my-1' href="/comingSoon">New NFT collection</Link>
-                <Link className='text-md my-1' href="/tokenomics">Tokenomics</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href='/mint'>NFT mint</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Staking</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Game</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Mining BNB</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">New NFT collection</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/tokenomics">Tokenomics</Link>
               </div>
             </div>
             <div className="flex flex-col text-center items-center xl:text-left xl:items-start">
               <h1 className="font-bold text-md">SUPPORT</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className='text-md my-1' href="/stared">Getting Started</Link>
-                <Link className='text-md my-1' href="/faq">FAQ</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/stared">Getting Started</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/faq">FAQ</Link>
               </div>
             </div>
             <div className="col-span-full justify-self-center xl:col-span-1 xl:justify-self-start">
@@ -115,19 +115,19 @@ export default function Home() {
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaTelegram className="h-10 w-10 p-2" />
                   </div>
-                  <h1 className="hidden xl:block">Telegram</h1>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Telegram</h1>
                 </Link>
                 <Link className="flex items-center gap-4 text-gray-400" href="https://www.facebook.com/NYNYCoins">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaFacebook className="h-10 w-10 p-2" />
                   </div>
-                  <h1 className="hidden xl:block">Facebook</h1>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Facebook</h1>
                 </Link>
                 <Link className="flex items-center gap-4 text-gray-400" href="https://twitter.com/nynycoins">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaTwitter className="h-10 w-10 p-2" />
                   </div>
-                  <h1 className="hidden xl:block">Twitter</h1>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Twitter</h1>
                 </Link>
                 {/* <Link className="flex items-center gap-4 text-gray-400">
                 <div className="blue-effect glass-effect rounded-lg">
@@ -139,7 +139,7 @@ export default function Home() {
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaDiscord className="h-10 w-10 p-2" />
                   </div>
-                  <h1 className="hidden xl:block">Discord</h1>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Discord</h1>
                 </Link>
               </div>
             </div>

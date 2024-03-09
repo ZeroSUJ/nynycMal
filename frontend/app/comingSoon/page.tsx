@@ -2,7 +2,7 @@
 
 const comingSoon = () => {
   return(
-    <h1>Coming Soon</h1>
+    <div className="text-xl">Coming Soon</div>
   )
 }
 

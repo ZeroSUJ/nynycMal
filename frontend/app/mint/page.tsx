@@ -88,7 +88,7 @@ const Minting = () => {
       console.log("nftJson:", nftJSON);
       //upload the metadata JSON to IPFS
       uploadJSONToIPFS(nftJSON)
-        .then((res) => {
+        .then((res: any) => {
           if (res.success === true) {
             console.log("Uploaded JSON to Pinata: ", res);
             resolve(res);
@@ -96,7 +96,7 @@ const Minting = () => {
           }
         })
         .catch((err) => {
-          console.log("Uploaded JSON to Pinata: ", res);
+          console.log("Uploaded JSON to Pinata: ", err);
           reject(err);
         });
     });
