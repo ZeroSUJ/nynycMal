@@ -125,7 +125,7 @@ const Minting = () => {
     for (let i = 0; i < selectedList.length; i++) {
       const it = selectedList[i] - 1;
       console.log("img : ", genImg[it]);
-      const uploadRes = await _uploadMetaData(nftName, genImg[it]);
+      const uploadRes: any = await _uploadMetaData(nftName, genImg[it]);
       if (uploadRes.success === true) {
         showToast("success", "Successfully uploaded");
         console.log("uploaded Metadata url:", uploadRes?.pinataURL);

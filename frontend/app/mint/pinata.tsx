@@ -5,7 +5,7 @@ const secret = process.env.NEXT_APP_PINATA_SECRET;
 const token = process.env.NEXT_APP_PINATA_JWT;
 
 
-export const uploadJSONToIPFS = async(JSONBody) => {
+export const uploadJSONToIPFS = async(JSONBody: any) => {
   return new Promise((resolve, reject)=>{
     const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
     //making axios POST request to Pinata ⬇️
@@ -15,13 +15,13 @@ export const uploadJSONToIPFS = async(JSONBody) => {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(function (response) {
+      .then(function (response: { data: { IpfsHash: string; }; }) {
         resolve({
             success: true,
             pinataURL: "https://gateway.pinata.cloud/ipfs/" + response.data.IpfsHash
         });
       })
-      .catch(function (error) {
+      .catch(function (error: { message: any; }) {
         console.log(error)
         reject({
             success: false,
@@ -32,7 +32,7 @@ export const uploadJSONToIPFS = async(JSONBody) => {
   });
 };
 
-export const uploadFileToIPFS = async(file) => {
+export const uploadFileToIPFS = async(file: any) => {
   const formData = new FormData();
   if(!file) return;
   formData.append('file', file)

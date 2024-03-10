@@ -67,11 +67,9 @@ export default function Home() {
                 Simple, Fast, Free of Custody
               </h1>
             </div>
-            {/* <Suspense fallback={<p>Loading feed...</p>}> */}
             <div className='xl:min-w-[450px] lg:min-w-[600px] sm:min-w-[400px] min-w-[300px] w-[300px] mx-auto'>
               <Exchange fallback={<div>Loading...</div>} />
             </div>
-            {/* </Suspense> */}
           </div>
         </section>
         <section className="w-[80%] m-auto px-5">
@@ -92,11 +90,10 @@ export default function Home() {
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
                 <Link className='text-md my-1 hover:text-white hover:underline' href='/mint'>NFT mint</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/mining">Mining BNB</Link>
                 <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Staking</Link>
                 <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Game</Link>
-                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">Mining BNB</Link>
                 <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon">New NFT collection</Link>
-                <Link className='text-md my-1 hover:text-white hover:underline' href="/tokenomics">Tokenomics</Link>
               </div>
             </div>
             <div className="flex flex-col text-center items-center xl:text-left xl:items-start">
@@ -129,12 +126,6 @@ export default function Home() {
                   </div>
                   <h1 className="hidden xl:block hover:text-white hover:underline">Twitter</h1>
                 </Link>
-                {/* <Link className="flex items-center gap-4 text-gray-400">
-                <div className="blue-effect glass-effect rounded-lg">
-                  <FaMailBulk className="h-10 w-10 p-2" />
-                </div>
-                Mail
-              </Link> */}
                 <Link className="flex items-center gap-4 text-gray-400" href="https://discord.com/channels/1193296401245950033/1193296401245950036">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaDiscord className="h-10 w-10 p-2" />
