@@ -22,12 +22,14 @@ export default function Home() {
     <main className="min-h-screen">
       <div className="realtive px-20 py-8 min-w-unit-sm">
         <div className="w-full flex justify-between items-center">
-          <div className="flex justify-between">
+          <div className="hidden sm:block">
             <img src="./logo.png" className="min-w-[140px] w-28" />
           </div>
           <div className='flex flex-row gap-4 items-center'>
-            <button className=' w-44 h-14 btn glass-effect blue-effect btn-glow flex items-center text-xs justify-items-center'>Buy NYNYC</button>
-            <w3m-button />
+            <button className=' w-44 h-14 btn glass-effect blue-effect btn-glow items-center text-xs justify-items-center hidden sm:block'>Buy NYNYC</button>
+            <div className='hidden sm:block'>
+              <w3m-button />
+            </div>
           </div>
         </div>
         <section className="relative flex justify-center items-center mb-32">

@@ -179,6 +179,7 @@ const Minting = () => {
       height: "512",
       safety_checker: false,
       seed: null,
+      
       samples: 4,
       base64: false,
       webhook: null,
