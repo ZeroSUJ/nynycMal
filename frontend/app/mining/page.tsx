@@ -26,9 +26,12 @@ import { parseEther } from 'viem';
 import erc20ABI from '@/contracts/ERC20ABI.json';
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import Miners from '@/components/miner';
+import TokenBalance from '@/components/TokenBalance';
+import ContractBalance from '@/components/ContractBalance';
+import WalletBalance from '@/components/WalletBalance';
 
-
-
+import erc20Abi from '@/contracts/ERC20ABI.json';
+import miningAbi from '@/contracts/Mining.json';
 
 
 const Mining = () => {
@@ -97,8 +100,9 @@ const Mining = () => {
               <img alt="balances" loading="lazy" width="85" height="68" decoding="async" data-nimg="1" className="h-[68px] w-auto object-contain" style={{ color: 'transparent' }} src="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcontract_balance_desktop.dd6f8c11.png&w=96&q=75"
               ></img>
               <div className="flex flex-col divide-y-2">
-                <p className="text-xl">Contract Balance: ? BNB</p>
-                <p className="text-xl">Wallet Balance: ? BNB</p>
+                <p className="text-xl">Token Balance: <TokenBalance/> BNB</p>
+                <p className="text-xl">Contract Balance: <ContractBalance/> BNB</p>
+                <p className="text-xl">Wallet Balance: <WalletBalance/> BNB</p>
               </div>
             </div>
             <hr className="mx-auto w-4/5 opacity-60"></hr>
