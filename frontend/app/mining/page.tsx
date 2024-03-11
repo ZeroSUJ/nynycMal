@@ -33,155 +33,7 @@ import Miners from '@/components/miner';
 
 
 const Mining = () => {
-  // const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
-  // const [inputVal, setInputVal] = useState('')
-  // const contractAddress = nftmAbi.address;
-  // const contractAbi = nftmAbi.abi;
-  // const [genImg, setGenImg] = useState("")
-  // const [uploadFileName, setUploadFileName] = useState<string>("");
-  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  // const [nftName, setNftName] = useState<string>("");
-  // const [fileURL, setFileURL] = useState<string>("");
-  // const [isProcess, setIsProcess] = useState<boolean>(false);
-
-
-  // const handleUpload = () => {
-  //   setIsUploading(true);
-
-  //   // Your upload logic here
-
-  //   setTimeout(() => {
-  //     setIsUploading(false);
-  //   }, 45000);
-  // };
-
-  // const {
-  //   data: hash,
-  //   isPending,
-  //   error,
-  //   writeContractAsync
-  // } = useWriteContract();
-
-
-  // // upload metadata of image to the pinata IPFS
-  // const _uploadMetaData = (nftColName: string, nftFileURL: string) => {
-  //   return new Promise((resolve, reject) => {
-  //     console.log("MetaData:", nftColName, nftFileURL);
-  //     if (!nftColName || !nftFileURL) {
-  //       showToast("error", "Plz input name exactly!");
-  //       reject("error occured")
-  //     }
-
-  //     const nftJSON = {
-  //       nftName, image: nftFileURL
-  //     }
-  //     console.log('nftJson:', nftJSON);
-  //     //upload the metadata JSON to IPFS
-  //     uploadJSONToIPFS(nftJSON)
-  //       .then(res => {
-  //         if (res.success === true) {
-  //           console.log("Uploaded JSON to Pinata: ", res)
-  //           resolve(res);
-  //           // return res.pinataURL;
-  //         }
-  //       })
-  //       .catch(err => {
-  //         reject(err);
-  //       })
-  //   });
-  // }
-
-  // const _mint = async () => {
-  //   console.log('upload:', uploadFileName);
-  //   setIsProcess(true);
-  //   const tx = await writeContractAsync({
-  //     abi: erc20ABI,
-  //     address: erc20TokenAddress,
-  //     functionName: 'approve',
-  //     args: [contractAddress, parseEther('1')],
-  //   });
-  //   console.log("tx1:", tx);
-
-  //   // const result = await uploadFileToIPFS(uploadFileName);
-  //   // if (result?.success === true) {
-  //   //   setFileURL(result?.pinataURL);
-  //   // } else {
-  //   //   showToast("error", "Uploading Error");
-  //   // }
-  //   // _uploadMetaData(nftName, result?.pinataURL).then(async(res)=>{
-
-  //   for (let i = 0; i < genImg.length; i++) {
-  //     await _uploadMetaData(nftName, genImg[i]).then(async (res) => {
-  //       if (res.success === true) {
-  //         showToast("success", "Successfully uploaded");
-  //         console.log("uploaded Metadata url:", res?.pinataURL);
-  //         const tx2 = await writeContractAsync({
-  //           address: contractAddress,
-  //           abi: contractAbi,
-  //           functionName: 'createToken',
-  //           args: [[res?.pinataURL], parseEther('1')],
-  //         });
-  //         console.log("tx2:", tx2);
-  //       }
-  //     });
-  //   } // or we can use useEffect() hook for state update. the state variable will be update after re-rendering.
-  //   setIsProcess(false);
-  // };
-
-  // const [age, setAge] = useState(ages[0]);
-  // const [season, setSeason] = useState(seasons[0])
-  // const [weather, setWeather] = useState(weathers[0])
-  // const [environment, setEnvironment] = useState(environments[0])
-  // const [building, setBuilding] = useState(buildings[0])
-  // let prompt = inputVal + " and " + building.name + " of New York City " + age.name + ", in " + season.name + " " + environment.name;
-  // console.log(prompt);
-
-  // const GenerateImage = () => {
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   var raw = JSON.stringify({
-  //     "key": "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
-  //     prompt: prompt,
-  //     "negative_prompt": "bad quality, ",
-  //     "width": "512",
-  //     "height": "512",
-  //     "safety_checker": false,
-  //     "seed": null,
-  //     "samples": 4,
-  //     "base64": false,
-  //     "webhook": null,
-  //     "track_id": null
-  //   });
-
-  //   var requestOptions = {
-  //     method: 'POST',
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: 'follow'
-  //   };
-
-  //   fetch("https://modelslab.com/api/v6/realtime/text2img", requestOptions)
-  //     .then(response => response.text())
-  //     .then(result => {
-  //       console.log(result)
-  //       const resultImage = JSON.parse(result);
-  //       if (resultImage.status === 'error') {
-  //         alert(resultImage.message);
-  //         return;
-  //       }
-  //       console.log(resultImage.output);
-  //       const imageData = resultImage.output;
-  //       setGenImg(imageData)
-
-  //     })
-  //     .catch(error => console.log('error', error));
-  // }
-
-  // const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
-  //   hash,
-  // });
-
+  
   const [value, setValue] = useState(0.01);
 
   const handleMinusClick = () => {
@@ -214,7 +66,7 @@ const Mining = () => {
                 </p>
                 <hr className='hidden w-1/3 opacity-40 lg:inline-block' />
                 <p className='text-lg lg:text-xl'>MAX:
-                  <span className='font-bold'>200 BNB</span>
+                  <span className='font-bold'>20 BNB</span>
                 </p>
               </div>
               <div className='mt-3 flex items-center justify-between rounded-lg border-2 border-neutral-400 bg-neutral-600 px-4 py-3'>
@@ -261,8 +113,8 @@ const Mining = () => {
               </div>
             </form>
             <div className="mt-3 rounded-xl bg-black p-4">
-              <p className="text-2xl uppercase">Daily Profit: UP TO 8%</p>
-              <p className="mt-2 text-2xl uppercase">TAX: 4%</p>
+              <p className="text-2xl uppercase">Daily Profit: UP TO 4%</p>
+              <p className="mt-2 text-2xl uppercase">TAX: 2%</p>
             </div>
           </div>
           <div className="flex flex-col gap-6">
