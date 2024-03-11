@@ -8,7 +8,7 @@
    *
    * @param hre HardhatRuntimeEnvironment object.
    */
-  const deployNFTMarketplace: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+  const deployMining: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     /*
       On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
   
@@ -32,19 +32,19 @@
       autoMine: true,
     });
 
-    const nftMarketplace = await get("Mining");
+    const Mining = await get("Mining");
 
     const data = {
-      address: nftMarketplace.address,
-      abi: nftMarketplace.abi
+      address: Mining.address,
+      abi: Mining.abi
     }
-    console.log(nftMarketplace.address);
+    console.log(Mining.address);
   
     //This writes the ABI and address to the marketplace.json
     //This data is then used by frontend files to connect with the smart contract
     fs.writeFileSync('./frontend/contracts/Mining.json', JSON.stringify(data))
   };
   
-  export default deployNFTMarketplace;
+  export default deployMining;
   
-  deployNFTMarketplace.tags = ["Mining"];
+  deployMining.tags = ["Mining"];
