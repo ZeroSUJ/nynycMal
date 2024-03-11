@@ -1,14 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import nftmAbi from "@/contracts/Marketplace.json";
-import { uploadFileToIPFS, uploadJSONToIPFS } from "./pinata";
+import { uploadJSONToIPFS } from "./pinata";
 import Content from "@/components/Content";
 import ImageCard from "@/components/ImageCard";
-import { Accordion, AccordionItem } from "@nextui-org/react";
 
-import { FaEye, FaImage, FaImages } from "react-icons/fa";
+import { FaImages } from "react-icons/fa";
 import {
   Modal,
   ModalContent,
@@ -17,13 +16,11 @@ import {
   ModalFooter,
   Button,
   useDisclosure,
-  Checkbox,
   Input,
-  Link,
+  Spinner
 } from "@nextui-org/react";
 import { showToast } from "@/helper/ToastNotify";
 import {
-  type BaseError,
   useWaitForTransactionReceipt,
   useWriteContract,
 } from "wagmi";
@@ -39,12 +36,11 @@ import {
   environments,
   buildings,
 } from "@/lib/data/PromptData";
-import MyCombobox from "@/components/combobox";
-import { Spinner } from "@nextui-org/react";
 
 export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
+
 
 const Minting = () => {
   const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
@@ -93,7 +89,7 @@ const Minting = () => {
       console.log("nftJson:", nftJSON);
       //upload the metadata JSON to IPFS
       uploadJSONToIPFS(nftJSON)
-        .then((res) => {
+        .then((res: any) => {
           if (res.success === true) {
             console.log("Uploaded JSON to Pinata: ", res);
             resolve(res);
@@ -101,7 +97,7 @@ const Minting = () => {
           }
         })
         .catch((err) => {
-          console.log("Uploaded JSON to Pinata: ", res);
+          console.log("Uploaded JSON to Pinata: ", err);
           reject(err);
         });
     });
@@ -130,7 +126,7 @@ const Minting = () => {
     for (let i = 0; i < selectedList.length; i++) {
       const it = selectedList[i] - 1;
       console.log("img : ", genImg[it]);
-      const uploadRes = await _uploadMetaData(nftName, genImg[it]);
+      const uploadRes: any = await _uploadMetaData(nftName, genImg[it]);
       if (uploadRes.success === true) {
         showToast("success", "Successfully uploaded");
         console.log("uploaded Metadata url:", uploadRes?.pinataURL);
@@ -155,23 +151,70 @@ const Minting = () => {
   const [season, setSeason] = useState(seasons[0]);
   const [weather, setWeather] = useState(weathers[0]);
   const [environment, setEnvironment] = useState(environments[0]);
-  const [building, setBuilding] = useState(buildings[0]);
+  const [building, setBuilding] = useState("");
   let prompt =
     inputVal +
     " and " +
-    building.name +
+    building +
     " of New York City " +
     age.name +
     ", in " +
     season.name +
     " " +
-    environment.name;
+    environment.name +
+    " " +
+    weather.name;
   console.log(prompt);
 
-  const GenerateImage = () => {
-    // const [showSpinner, setShowSpinner] = useState(false);
-    
+  // const GenerateImage = () => {
+  //   // const [showSpinner, setShowSpinner] = useState(false);
 
+
+  //   setIsGenerating(true);
+  //   var myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
+
+  //   var raw = JSON.stringify({
+  //     key: "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
+  //     prompt: prompt,
+  //     negative_prompt: "bad quality, ",
+  //     width: "512",
+  //     height: "512",
+  //     safety_checker: false,
+  //     seed: null,
+
+  //     samples: 4,
+  //     base64: false,
+  //     webhook: null,
+  //     track_id: null,
+  //   });
+
+  //   var requestOptions = {
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: raw,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch("https://modelslab.com/api/v6/realtime/text2img", requestOptions)
+  //     .then((response) => response.text())
+  //     .then((result) => {
+  //       console.log(result);
+  //       const resultImage = JSON.parse(result);
+  //       if (resultImage.status === "error") {
+  //         // alert(resultImage.message);
+  //         showToast("error", resultImage.message);
+  //         return;
+  //       }
+  //       console.log(resultImage.output);
+  //       const imageData = resultImage.output;
+  //       setGenImg(imageData);
+  //       setIsGenerating(false);
+  //     })
+  //     .catch((error) => console.log("error", error));
+  // };
+
+  const GenerateImage = () => {
     setIsGenerating(true);
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -203,13 +246,12 @@ const Minting = () => {
         console.log(result);
         const resultImage = JSON.parse(result);
         if (resultImage.status === "error") {
-          // alert(resultImage.message);
           showToast("error", resultImage.message);
           return;
         }
         console.log(resultImage.output);
         const imageData = resultImage.output;
-        setGenImg(imageData);
+        setGenImg([imageData[0], imageData[1], imageData[2], imageData[3]]);
         setIsGenerating(false);
       })
       .catch((error) => console.log("error", error));
@@ -268,10 +310,20 @@ const Minting = () => {
                   <p className="text-center text-xl uppercase">Please choose imgages</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 pt-8">
-                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={1} imgSrc={genImg[0]} />
-                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={2} imgSrc={genImg[1]} />
-                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={3} imgSrc={genImg[2]} />
-                  <ImageCard selectedList={selectedList} setSelectedList={setSelectedList} id={4} imgSrc={genImg[3]} />
+                  {[1, 2, 3, 4].map((id: number) => (
+                    <div key={id} className="flex justify-center items-center h-full"> {/* Apply flex styles for centering */}
+                      {isGenerating ? (
+                        <Spinner className="flex mt-[40%]" />
+                      ) : (
+                        <ImageCard
+                          selectedList={selectedList}
+                          setSelectedList={setSelectedList}
+                          id={id}
+                          imgSrc={genImg[id - 1]}
+                        />
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
