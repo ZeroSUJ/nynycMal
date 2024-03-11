@@ -105,7 +105,7 @@ const Mining = () => {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700 ">1</span>
-                <p className="text-xl">Hold $NYNYC in your wallet.</p>
+                <p className="text-xl">Hold $NYNYC in your wallet. At least 50000</p>
               </div>
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">2</span>
