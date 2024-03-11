@@ -10,6 +10,7 @@ export default function Age(props: any) {
     <Select
       value={age}
       onChange={(e) => setAge({ name: e.target.value })}
+      defaultSelectedKeys={["In 1900s"]}
       items={ages}
       defaultSelectedKeys={["In modern times"]}
       label="Ages"

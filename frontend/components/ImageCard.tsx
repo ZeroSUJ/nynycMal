@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardFooter, Button, CardHeader, CardBody, Image } from "@nextui-org/react";
-import { HeartIcon } from "@heroicons/react/24/outline";
+import { CheckIcon } from "@heroicons/react/24/outline";
 
 export default function App(props: any) {
 
@@ -31,7 +31,7 @@ export default function App(props: any) {
           variant="light"
           onClick={() => handleClick()}
         >
-          <HeartIcon
+          <CheckIcon
             className={selectedList?.find((it: number) => it === id) ? "[&>path]:stroke-transparent" : ""}
             fill={selectedList?.find((it: number) => it === id) ? "currentColor" : "none"}
             height={30} // Keep the size of the HeartIcon here
