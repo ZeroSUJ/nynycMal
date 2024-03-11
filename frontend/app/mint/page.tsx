@@ -40,6 +40,7 @@ import {
 export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
+ 
 
 
 const Minting = () => {
@@ -227,6 +228,7 @@ const Minting = () => {
       height: "512",
       safety_checker: false,
       seed: null,
+      
       samples: 4,
       base64: false,
       webhook: null,

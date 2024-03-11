@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
@@ -82,30 +83,6 @@ const Mining = () => {
                   value={value}
                   onChange={handleChange}
                 ></input>
-                <div className='flex gap-4'>
-                  {/* <img
-                    alt="minus icon"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
-                    src="https://www.minucoin.com/_next/static/media/minus.35c39da3.svg"
-                    onClick={handleMinusClick}
-                  ></img>
-                  <img
-                    alt="plus icon"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
-                    src="https://www.minucoin.com/_next/static/media/plus.64cfad37.svg"
-                    onClick={handlePlusClick}
-                  ></img> */}
-                </div>
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
@@ -128,7 +105,7 @@ const Mining = () => {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700 ">1</span>
-                <p className="text-xl">Hold $NYNYC in your wallet.</p>
+                <p className="text-xl">Hold $NYNYC in your wallet. At least 50000</p>
               </div>
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">2</span>
