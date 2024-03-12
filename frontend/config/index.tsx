@@ -18,7 +18,7 @@ const metadata = {
 
 // Create wagmiConfig
 export const config = createConfig({
-  chains: [mainnet, sepolia, bsc, polygon, polygonMumbai, bscTestnet],
+  chains: [bsc, polygon, polygonMumbai, bscTestnet],
   transports: {
     [mainnet.id]: http(),
     [sepolia.id]: http(),

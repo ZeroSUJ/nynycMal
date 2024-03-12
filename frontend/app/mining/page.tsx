@@ -41,17 +41,13 @@ import {
 } from "@/contracts/Mining.json";
 import { showToast } from "@/helper/ToastNotify";
 
-
-
 const Mining = () => {
-
-  
   const userAccount = useAccount();
   const { address, isConnected } = userAccount;
   // useEffect(()=>{
   //   console.log('updated state');
   // }, [isConnected]);
-  
+
   const {
     data: hash,
     isPending,
@@ -59,10 +55,13 @@ const Mining = () => {
     writeContractAsync,
   } = useWriteContract();
 
-  const { isLoading: isConfirming, isSuccess: isConfirmed, isError: isFailed } =
-    useWaitForTransactionReceipt({
-      hash,
-    });
+  const {
+    isLoading: isConfirming,
+    isSuccess: isConfirmed,
+    isError: isFailed,
+  } = useWaitForTransactionReceipt({
+    hash,
+  });
 
   const [value, setValue] = useState(0.01);
 
@@ -81,13 +80,18 @@ const Mining = () => {
 
   const _collectRewards = async () => {
     console.log("_CollectRewards");
-    const tx = await writeContractAsync({
-      abi: miningAbi,
-      address: miningAddress,
-      functionName: "sellBones",
-      args: [],
-    });
-    console.log("tx:", tx);
+    try {
+      const tx = await writeContractAsync({
+        abi: miningAbi,
+        address: miningAddress,
+        functionName: "sellBones",
+        args: [],
+      });
+      console.log("tx:", tx);
+    } catch (err) {
+      console.log(err);
+      showToast("error", "Transaction failed");
+    }
   };
 
   const _seedMarket = async () => {
@@ -99,24 +103,29 @@ const Mining = () => {
       args: [],
       value: parseEther("0.1"),
     });
+
     console.log("tx:", tx);
   };
 
   const _hireMiner = async () => {
     console.log("_hireMiner");
-    const tx = await writeContractAsync({
-      abi: miningAbi,
-      address: miningAddress,
-      functionName: "buyBones",
-      args: [],
-      value: parseEther(value.toString()),
-    });
-    console.log("tx:", tx);
+    try {
+      const tx = await writeContractAsync({
+        abi: miningAbi,
+        address: miningAddress,
+        functionName: "buyBones",
+        args: [],
+        value: parseEther(value.toString()),
+      });
+      console.log("tx:", tx);
+    } catch (err) {
+      console.log(err);
+      showToast("error", "Transaction failed");
+    }
   };
 
-  if(isConfirmed) showToast('success', "transaction confirmed successfully.");
-  if(isFailed) showToast('error', "transaction failed.");
-  
+  if (isConfirmed) showToast("success", "transaction confirmed successfully.");
+  if (isFailed) showToast("error", "transaction failed.");
 
   return (
     <div className="grid grid-cols-12 w-full h-screen bg-[#090808]">
@@ -132,20 +141,20 @@ const Mining = () => {
               className="flex items-center py-1"
               name="Miners"
               url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fminer.233b0144.png&w=48&q=75"
-              number={isConnected ? <GetMiner/> : '0'}
+              number={isConnected ? <GetMiner /> : "0"}
             />
             <Miners
               className="flex items-center py-1"
               name="Mining Speed"
               url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmining_speed.2ea3c80d.png&w=96&q=75"
-              number={isConnected ? <GetSpeed/> : '0'}
+              number={isConnected ? <GetSpeed /> : "0"}
               unit="BNB/48h"
             />
             <Miners
               className="flex items-center py-1"
               name="My rewards"
               url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Frewards.90435076.png&w=96&q=75"
-              number={isConnected?<GetRewards/>:'0'}
+              number={isConnected ? <GetRewards /> : "0"}
               unit="BNB"
             />
             <form className="flex flex-col lg:px-4">
@@ -183,7 +192,7 @@ const Mining = () => {
                   isDisabled={!isConnected || isConfirming || isPending}
                   isLoading={isConfirming}
                 >
-                  {isConfirming || isPending ?'Processing...':'Hire Miners'}
+                  {isConfirming || isPending ? "Processing..." : "Hire Miners"}
                 </Button>
                 <Button
                   className="w-full rounded-md px-4 py-5"
@@ -194,7 +203,9 @@ const Mining = () => {
                   isDisabled={!isConnected || isConfirming || isPending}
                   isLoading={isConfirming}
                 >
-                  {isConfirming || isPending ?'Processing...':'Collect Rewards'}
+                  {isConfirming || isPending
+                    ? "Processing..."
+                    : "Collect Rewards"}
                 </Button>
               </div>
             </form>
@@ -214,13 +225,13 @@ const Mining = () => {
               ></img>
               <div className="flex flex-col divide-y-2">
                 <p className="text-xl">
-                  Token Balance: {isConnected?<TokenBalance />:'0'} BNB
+                  Token Balance: {isConnected ? <TokenBalance /> : "0"} BNB
                 </p>
                 <p className="text-xl">
                   Contract Balance: <ContractBalance /> BNB
                 </p>
                 <p className="text-xl">
-                  Wallet Balance: {isConnected?<WalletBalance />:'0'} BNB
+                  Wallet Balance: {isConnected ? <WalletBalance /> : "0"} BNB
                 </p>
               </div>
             </div>

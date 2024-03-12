@@ -16,6 +16,9 @@ export default function () {
   })
 
   if (isPending) return "Loading..." 
+  
+  if (error) return '0';
+
 
 
   return formatEther(balance);

@@ -21,7 +21,7 @@ export default function () {
   if (error) 
     return ( 
       <span> 
-        Error: {(error as BaseError).shortMessage || error.message} 
+        0.0
       </span> 
     )
 
