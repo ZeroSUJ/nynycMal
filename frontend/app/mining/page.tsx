@@ -3,38 +3,34 @@
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
-import nftmAbi from '@/contracts/Marketplace.json';
 import Content from '@/components/Content';
-import ImageCard from '@/components/ImageCard';
-import { Accordion, AccordionItem } from "@nextui-org/react";
 
-import { FaEye, FaImage, FaImages } from "react-icons/fa";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from "@nextui-org/react";
-import { showToast } from '@/helper/ToastNotify';
 import { type BaseError, useWaitForTransactionReceipt, useWriteContract } from 'wagmi';
-import Building from '@/components/Building';
-import Age from '@/components/AgeSelectbox';
-import Weather from '@/components/WeatherSelectbox';
-import Environment from '@/components/EnvironmentSelectbox';
-import Season from '@/components/SeasonSelectbox';
-import { ages, weathers, seasons, environments, buildings } from '@/lib/data/PromptData';
-import { Spinner } from '@nextui-org/react';
-import { Avatar } from "@nextui-org/react";
 
 export type DataType = { building_name: string; }
-import { parseEther } from 'viem';
-import erc20ABI from '@/contracts/ERC20ABI.json';
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
+import { formatEther, parseEther } from 'viem';
 import Miners from '@/components/miner';
 import TokenBalance from '@/components/TokenBalance';
 import ContractBalance from '@/components/ContractBalance';
 import WalletBalance from '@/components/WalletBalance';
+import GetMiner from '@/components/GetMiner';
+import GetRewards from '@/components/GetRewards';
+import GetSpeed from '@/components/GetSpeed';
 
 import erc20Abi from '@/contracts/ERC20ABI.json';
-import miningAbi from '@/contracts/Mining.json';
+import {abi as miningAbi, address as miningAddress} from '@/contracts/Mining.json';
 
 
 const Mining = () => {
+
+  const {
+    data: hash,
+    isPending,
+    error,
+    writeContractAsync,
+    writeContract,
+  } = useWriteContract();
 
 
   const [value, setValue] = useState(0.01);
@@ -52,6 +48,46 @@ const Mining = () => {
     }
   };
 
+
+
+  const _collectRewards = async() => {
+    console.log("_CollectRewards");
+
+    const tx = await writeContractAsync({
+      abi: miningAbi,
+      address: miningAddress,
+      functionName: "sellBones",
+      args: [],
+    });
+    console.log("tx:", tx);
+  }
+
+  const _seedMarket = async() => {
+    console.log("seed Market:");
+    const tx = await writeContractAsync({
+      abi: miningAbi,
+      address: miningAddress,
+      functionName: "seedMarket",
+      args: [],
+      value: parseEther('0.1'),
+    });
+    console.log("tx:", tx);
+  }
+
+  const _hireMiner = async () => {
+    // await _seedMarket();
+
+    console.log("_hireMiner");
+    const tx = await writeContractAsync({
+      abi: miningAbi,
+      address: miningAddress,
+      functionName: "buyBones",
+      args: [],
+      value: parseEther(value.toString()),
+    });
+    console.log("tx:", tx);
+  }
+
   return (
     <div className="grid grid-cols-12 w-full h-screen bg-[#090808]">
       <Navbar />
@@ -62,9 +98,9 @@ const Mining = () => {
         </div>
         <div className='flex flex-col gap-12  p-4  lg:flex-row'>
           <div className='flex w-full flex-col gap-4 lg:w-1/2 rounded-md p-4'>
-            <Miners className='flex items-center py-1' name="Miners" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fminer.233b0144.png&w=48&q=75" number={0} />
-            <Miners className='flex items-center py-1' name="Mining Speed" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmining_speed.2ea3c80d.png&w=96&q=75" number="0" unit="BNB/48h" />
-            <Miners className='flex items-center py-1' name="My rewards" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Frewards.90435076.png&w=96&q=75" number="0.0000" unit="BNB" />
+            <Miners className='flex items-center py-1' name="Miners" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fminer.233b0144.png&w=48&q=75" number={GetMiner()} />
+            <Miners className='flex items-center py-1' name="Mining Speed" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmining_speed.2ea3c80d.png&w=96&q=75" number={GetSpeed()} unit="BNB/48h" />
+            <Miners className='flex items-center py-1' name="My rewards" url="https://www.minucoin.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Frewards.90435076.png&w=96&q=75" number={GetRewards()} unit="BNB" />
             <form className='flex flex-col lg:px-4'>
               <div className='mt-8 flex items-center justify-between'>
                 <p className='text-lg lg:text-xl'>MIN:
@@ -89,8 +125,8 @@ const Mining = () => {
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
-                <Button className="w-full rounded-md px-4 py-5" color="primary" variant="bordered" type="button">Hire Miners</Button>
-                <Button className="w-full rounded-md px-4 py-5" color="primary" variant="bordered" type="button">Collect Rewards</Button>
+                <Button className="w-full rounded-md px-4 py-5" color="primary" variant="bordered" type="button" onClick={_hireMiner}>Hire Miners</Button>
+                <Button className="w-full rounded-md px-4 py-5" color="primary" variant="bordered" type="button" onClick={_collectRewards}>Collect Rewards</Button>
               </div>
             </form>
 

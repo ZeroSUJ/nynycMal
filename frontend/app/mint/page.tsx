@@ -136,6 +136,7 @@ const Minting = () => {
     });
   };
 
+
   const _mint = async () => {
     console.log("upload:", uploadFileName);
     const metadataUrl: string[] = [];
@@ -198,54 +199,6 @@ const Minting = () => {
     " " +
     weather.name;
   console.log(prompt);
-
-  // const GenerateImage = () => {
-  //   // const [showSpinner, setShowSpinner] = useState(false);
-
-
-  //   setIsGenerating(true);
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   var raw = JSON.stringify({
-  //     key: "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
-  //     prompt: prompt,
-  //     negative_prompt: "bad quality, ",
-  //     width: "512",
-  //     height: "512",
-  //     safety_checker: false,
-  //     seed: null,
-
-  //     samples: 4,
-  //     base64: false,
-  //     webhook: null,
-  //     track_id: null,
-  //   });
-
-  //   var requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: "follow",
-  //   };
-
-  //   fetch("https://modelslab.com/api/v6/realtime/text2img", requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => {
-  //       console.log(result);
-  //       const resultImage = JSON.parse(result);
-  //       if (resultImage.status === "error") {
-  //         // alert(resultImage.message);
-  //         showToast("error", resultImage.message);
-  //         return;
-  //       }
-  //       console.log(resultImage.output);
-  //       const imageData = resultImage.output;
-  //       setGenImg(imageData);
-  //       setIsGenerating(false);
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
 
   const GenerateImage = () => {
     setIsGenerating(true);
