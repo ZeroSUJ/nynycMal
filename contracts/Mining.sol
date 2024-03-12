@@ -3,110 +3,11 @@
  */
 
 // SPDX-License-Identifier: MIT
-library SafeMath {
-  function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-    unchecked {
-      uint256 c = a + b;
-      if (c < a) return (false, 0);
-      return (true, c);
-    }
-  }
-
-  function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-    unchecked {
-      if (b > a) return (false, 0);
-      return (true, a - b);
-    }
-  }
-
-  function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-    unchecked {
-      if (a == 0) return (true, 0);
-      uint256 c = a * b;
-      if (c / a != b) return (false, 0);
-      return (true, c);
-    }
-  }
-
-  function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-    unchecked {
-      if (b == 0) return (false, 0);
-      return (true, a / b);
-    }
-  }
-
-  function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
-    unchecked {
-      if (b == 0) return (false, 0);
-      return (true, a % b);
-    }
-  }
-
-  function add(uint256 a, uint256 b) internal pure returns (uint256) {
-    return a + b;
-  }
-
-  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-    return a - b;
-  }
-
-  function mul(uint256 a, uint256 b) internal pure returns (uint256) {
-    return a * b;
-  }
-
-  function div(uint256 a, uint256 b) internal pure returns (uint256) {
-    return a / b;
-  }
-
-  function mod(uint256 a, uint256 b) internal pure returns (uint256) {
-    return a % b;
-  }
-
-  function sub(
-    uint256 a,
-    uint256 b,
-    string memory errorMessage
-  ) internal pure returns (uint256) {
-    unchecked {
-      require(b <= a, errorMessage);
-      return a - b;
-    }
-  }
-
-  function div(
-    uint256 a,
-    uint256 b,
-    string memory errorMessage
-  ) internal pure returns (uint256) {
-    unchecked {
-      require(b > 0, errorMessage);
-      return a / b;
-    }
-  }
-
-  function mod(
-    uint256 a,
-    uint256 b,
-    string memory errorMessage
-  ) internal pure returns (uint256) {
-    unchecked {
-      require(b > 0, errorMessage);
-      return a % b;
-    }
-  }
-}
 
 pragma solidity ^0.8.20;
 
-abstract contract Context {
-  function _msgSender() internal view virtual returns (address) {
-    return msg.sender;
-  }
+import '@openzeppelin/contracts/utils/Context.sol';
 
-  function _msgData() internal view virtual returns (bytes calldata) {
-    return msg.data;
-  }
-}
 
 contract Ownable is Context {
   address private _owner;
@@ -147,18 +48,18 @@ contract Ownable is Context {
 interface IERC20 {
   function balanceOf(address account) external view returns (uint256);
 
-  function isPresaleClaimed(address account) external view returns (bool);
+  // function isPresaleClaimed(address account) external view returns (bool);
 }
 
 contract Mining is Context, Ownable {
-  using SafeMath for uint256;
 
   uint256 private BONES_TO_HATCH_1MINERS = 1080000; //for final version should be seconds in a day
   uint256 private PSN = 10000;
   uint256 private PSNH = 5000;
   uint256 private devFeeVal = 2;
   bool private initialized = false;
-  address payable private recAdd = payable(0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4);
+  address payable private recAdd = payable(0xAEba95a79411d88C7c108BEbCC2A8eaa5143A7f9);
+  event Log(string func, uint gas);
   mapping(address => uint256) private hatcheryMiners;
   mapping(address => uint256) private claimedBones;
   mapping(address => uint256) private lastHatch;
@@ -173,8 +74,8 @@ contract Mining is Context, Ownable {
   }
 
   modifier canTrade() {
-    if (tradingState == 1)
-      require(token.isPresaleClaimed(_msgSender()) || owner() == _msgSender(), 'only presale users');
+    // if (tradingState == 1)
+    //   require(token.isPresaleClaimed(_msgSender()) || owner() == _msgSender(), 'only presale users');
 
     if (tradingState == 0) require(owner() == _msgSender(), 'trades are not enabled');
 
@@ -197,13 +98,13 @@ contract Mining is Context, Ownable {
     require(initialized, 'not initilized');
 
     uint256 bonesUsed = getMyBones(msg.sender);
-    uint256 newMiners = SafeMath.div(bonesUsed, BONES_TO_HATCH_1MINERS);
-    hatcheryMiners[msg.sender] = SafeMath.add(hatcheryMiners[msg.sender], newMiners);
+    uint256 newMiners = bonesUsed / BONES_TO_HATCH_1MINERS;
+    hatcheryMiners[msg.sender] = hatcheryMiners[msg.sender] + newMiners;
     claimedBones[msg.sender] = 0;
     lastHatch[msg.sender] = block.timestamp;
 
     //boost market to nerf miners hoarding
-    marketBones = SafeMath.add(marketBones, SafeMath.div(bonesUsed, 5));
+    marketBones = marketBones + (bonesUsed/5);
   }
 
   function sellBones() public canTrade {
@@ -213,9 +114,9 @@ contract Mining is Context, Ownable {
     uint256 fee = devFee(boneValue);
     claimedBones[msg.sender] = 0;
     lastHatch[msg.sender] = block.timestamp;
-    marketBones = SafeMath.add(marketBones, hasBones);
+    marketBones = marketBones + hasBones;
     recAdd.transfer(fee);
-    payable(msg.sender).transfer(SafeMath.sub(boneValue, fee));
+    payable(msg.sender).transfer(boneValue - fee);
   }
 
   function beanRewards(address adr) public view returns (uint256) {
@@ -226,11 +127,11 @@ contract Mining is Context, Ownable {
 
   function buyBones() public payable canTrade {
     require(initialized, 'not initilized');
-    uint256 bonesBought = calculateBoneBuy(msg.value, SafeMath.sub(address(this).balance, msg.value));
-    bonesBought = SafeMath.sub(bonesBought, devFee(bonesBought));
+    uint256 bonesBought = calculateBoneBuy(msg.value, (address(this).balance - msg.value));
+    bonesBought = bonesBought - devFee(bonesBought);
     uint256 fee = devFee(msg.value);
     recAdd.transfer(fee);
-    claimedBones[msg.sender] = SafeMath.add(claimedBones[msg.sender], bonesBought);
+    claimedBones[msg.sender] = claimedBones[msg.sender] + bonesBought;
     hatchBones();
   }
 
@@ -240,10 +141,7 @@ contract Mining is Context, Ownable {
     uint256 bs
   ) private view returns (uint256) {
     return
-      SafeMath.div(
-        SafeMath.mul(PSN, bs),
-        SafeMath.add(PSNH, SafeMath.div(SafeMath.add(SafeMath.mul(PSN, rs), SafeMath.mul(PSNH, rt)), rt))
-      );
+        PSN * bs/(PSNH + (PSN * rs + PSNH * rt)/rt);
   }
 
   function calculateBoneSell(uint256 bones) public view returns (uint256) {
@@ -259,7 +157,7 @@ contract Mining is Context, Ownable {
   }
 
   function devFee(uint256 amount) private view returns (uint256) {
-    return SafeMath.div(SafeMath.mul(amount, devFeeVal), 100);
+    return amount * devFeeVal/100;
   }
 
   function seedMarket() public payable onlyOwner {
@@ -277,15 +175,24 @@ contract Mining is Context, Ownable {
   }
 
   function getMyBones(address adr) public view returns (uint256) {
-    return SafeMath.add(claimedBones[adr], getBonesSinceLastHatch(adr));
+    return claimedBones[adr] + getBonesSinceLastHatch(adr);
   }
 
   function getBonesSinceLastHatch(address adr) public view returns (uint256) {
-    uint256 secondsPassed = min(BONES_TO_HATCH_1MINERS, SafeMath.sub(block.timestamp, lastHatch[adr]));
-    return SafeMath.mul(secondsPassed, hatcheryMiners[adr]);
+    uint256 secondsPassed = min(BONES_TO_HATCH_1MINERS, (block.timestamp - lastHatch[adr]));
+    return secondsPassed * hatcheryMiners[adr];
   }
-
   function min(uint256 a, uint256 b) private pure returns (uint256) {
     return a < b ? a : b;
+  }
+
+  receive() external payable{
+    emit Log("receive", gasleft());
+  }
+
+  fallback() external payable {
+    // send / transfer (forwards 2300 gas to this fallback function)
+    // call (forwards all of the gas)
+    emit Log("fallback", gasleft());
   }
 }

@@ -17,14 +17,13 @@ describe("Mining", function () {
       console.log("contract address,", contract.target)
       miningContract = await ethers.getContractAt("Mining", address);
       console.log("address", miningContract.target);
-      // const ownerAddress = await contract.ownerOf(1);
-      // console.log("ownerAddress:", ownerAddress.toString());
-      // console.log("tokenBalance:", tokenbalance.toString());
-      // console.log("nftBalance:", nftbalance.toString());
-      // expect(await lock.unlockTime()).to.equal(token);
-      const value = ethers.parseEther("0.01");
-      const bone = await miningContract.getBalance("0x66ab0d9605fb5D5c9f802deA199C38d93B1Ea8ab");
+      const value = ethers.parseEther("0.1");
+      await miningContract.buyBones({value: value});
+      const bone = await miningContract.getMyBones("0x66ab0d9605fb5D5c9f802deA199C38d93B1Ea8ab");
+      const miner = await miningContract.getMyMiners("0x66ab0d9605fb5D5c9f802deA199C38d93B1Ea8ab");
+      
       console.log("bone:", bone.toString());
+      console.log("miner:", miner.toString());
     });
 
   });
