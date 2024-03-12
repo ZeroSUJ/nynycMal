@@ -96,7 +96,7 @@ library SafeMath {
   }
 }
 
-pragma solidity 0.8.17;
+pragma solidity ^0.8.20;
 
 abstract contract Context {
   function _msgSender() internal view virtual returns (address) {
@@ -150,7 +150,7 @@ interface IERC20 {
   function isPresaleClaimed(address account) external view returns (bool);
 }
 
-contract MinuBones is Context, Ownable {
+contract Mining is Context, Ownable {
   using SafeMath for uint256;
 
   uint256 private BONES_TO_HATCH_1MINERS = 1080000; //for final version should be seconds in a day
@@ -158,7 +158,7 @@ contract MinuBones is Context, Ownable {
   uint256 private PSNH = 5000;
   uint256 private devFeeVal = 4;
   bool private initialized = false;
-  address payable private recAdd = payable(0x1495909E77f57fbe2e977d96f754e9d170C80eb5);
+  address payable private recAdd = payable(0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4);
   mapping(address => uint256) private hatcheryMiners;
   mapping(address => uint256) private claimedBones;
   mapping(address => uint256) private lastHatch;

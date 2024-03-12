@@ -12,6 +12,7 @@ export default function Age(props: any) {
       onChange={(e) => setAge({ name: e.target.value })}
       defaultSelectedKeys={["In 1900s"]}
       items={ages}
+      defaultSelectedKeys={["In modern times"]}
       label="Ages"
       className="max-w-s"
     >

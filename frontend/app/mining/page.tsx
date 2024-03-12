@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
@@ -89,6 +90,7 @@ const Mining = () => {
                   onChange={handleChange}
                   onClick={handleInputClick} // Add onClick event to clear input value
                 ></input>
+<<<<<<< HEAD
                 {/* <div className='flex gap-4'> */}
                 {/* <img
                     alt="minus icon"
@@ -113,6 +115,8 @@ const Mining = () => {
                     onClick={handlePlusClick}
                   ></img> */}
                 {/* </div> */}
+=======
+>>>>>>> b9856ad3d8e365120029c90c990a7c942ccfaf98
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
@@ -135,7 +139,7 @@ const Mining = () => {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700 ">1</span>
-                <p className="text-xl">Hold $NYNYC in your wallet.</p>
+                <p className="text-xl">Hold $NYNYC in your wallet. At least 50000</p>
               </div>
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">2</span>
