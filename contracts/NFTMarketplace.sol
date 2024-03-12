@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract NFTMarketplace is ERC721URIStorage {
 
-    address private constant NYNYC_TOKEN = 0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4;
+    address private constant NYNYC_TOKEN = 0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3;
 
     //_tokenIds variable has the most recent minted tokenId
     uint256 private _tokenIds;
@@ -36,7 +36,7 @@ contract NFTMarketplace is ERC721URIStorage {
     function createToken(string[] memory tokenURI, uint256 amount) public {
         uint256 newTokenId = _tokenIds;
         
-        NYNYC_Token.transferFrom(msg.sender, 0x5BDf77ffD472661962a4C2A745f8E8e33E888950, amount);
+        NYNYC_Token.transferFrom(msg.sender, 0x00913C6C8ae1458b3DD6Bb1010106Fc74a0a9C7C, amount);
         for (uint256 i = 0; i < tokenURI.length; i++) {
             
             //Increment the tokenId counter, which is keeping track of the number of minted NFTs

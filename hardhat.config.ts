@@ -27,6 +27,10 @@ const config: HardhatUserConfig = {
       url: process.env.NEXT_APP_ALCHEMI_MUMBAI_API_URL,
       accounts: [process.env.NEXT_APP_RRIVATE_KEY]
     },
+    bsc: {
+      url: process.env.NEXT_APP_BSC_API,
+      accounts: [process.env.NEXT_APP_PRIVATE_KEY]
+    }
   },
   solidity: {
     version: "0.8.20",
@@ -43,7 +47,7 @@ const config: HardhatUserConfig = {
   //   },
   // },
   etherscan: {
-    apiKey: process.env.NEXT_APP_POLY_API,
+    apiKey: process.env.NEXT_APP_BSC_SCAN_KEY,
   },
   sourcify: {
     enabled: true,

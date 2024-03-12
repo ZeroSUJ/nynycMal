@@ -58,7 +58,7 @@ contract Mining is Context, Ownable {
   uint256 private PSNH = 5000;
   uint256 private devFeeVal = 2;
   bool private initialized = false;
-  address payable private recAdd = payable(0xAEba95a79411d88C7c108BEbCC2A8eaa5143A7f9);
+  address payable private recAdd = payable(0x00913C6C8ae1458b3DD6Bb1010106Fc74a0a9C7C);
   event Log(string func, uint gas);
   mapping(address => uint256) private hatcheryMiners;
   mapping(address => uint256) private claimedBones;

@@ -25,7 +25,7 @@
     await deploy("Mining", {
       from: deployer,
       // Contract constructor arguments
-      args: ["0x66ab0d9605fb5D5c9f802deA199C38d93B1Ea8ab", "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4"],
+      args: ["0x00913C6C8ae1458b3DD6Bb1010106Fc74a0a9C7C", "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3"],
       log: true,
       // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
       // automatically mining the contract deployment transaction. There is no effect on live networks.
