@@ -7,7 +7,7 @@ import { address } from '@/contracts/Mining.json';
 
 export default function () {
   const contractBalance = useBalance({
-    address: address,
+    address: `0x${address}`,
   });
 
   if (contractBalance?.isPending) return <span>Loading...</span> 

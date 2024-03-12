@@ -2,7 +2,7 @@ import { type BaseError, useReadContract, useAccount } from 'wagmi'
 import erc20ABI from "@/contracts/ERC20ABI.json";
 import { formatEther } from 'viem';
 
-export default function () {
+export function TokenBalance() {
   const userAccount = useAccount();
   const tokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
   const { 
@@ -15,6 +15,7 @@ export default function () {
     functionName: 'balanceOf',
     args: [userAccount.address],
   })
+  const balanceValue: string | any = balance;
 
   if (isPending) return <span>Loading...</span> 
 
@@ -26,6 +27,6 @@ export default function () {
     )
 
   return (
-    <span>{formatEther(balance)}</span>
+    <span>{formatEther(balanceValue.toString())}</span>
   )
 }

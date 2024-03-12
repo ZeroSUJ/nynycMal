@@ -27,11 +27,11 @@ import {
 export type DataType = { building_name: string };
 import { formatEther, parseEther } from "viem";
 import Miners from "@/components/miner";
-import TokenBalance from "@/components/TokenBalance";
+import {TokenBalance} from "@/components/TokenBalance";
 import ContractBalance from "@/components/ContractBalance";
-import WalletBalance from "@/components/WalletBalance";
+import {WalletBalance} from "@/components/WalletBalance";
 import GetMiner from "@/components/GetMiner";
-import GetRewards from "@/components/GetRewards";
+import {GetRewards} from "@/components/GetRewards";
 import GetSpeed from "@/components/GetSpeed";
 
 import erc20Abi from "@/contracts/ERC20ABI.json";
@@ -81,14 +81,14 @@ const Mining = () => {
   };
 
   const handleInputClick = () => {
-    setValue(''); // Clear the input value when input box is clicked
+    setValue(0.0); // Clear the input value when input box is clicked
   };
   const _collectRewards = async () => {
     console.log("_CollectRewards");
     try {
       const tx = await writeContractAsync({
         abi: miningAbi,
-        address: miningAddress,
+        address: `0x${miningAddress}`,
         functionName: "sellBones",
         args: [],
       });
@@ -103,7 +103,7 @@ const Mining = () => {
     console.log("seed Market:");
     const tx = await writeContractAsync({
       abi: miningAbi,
-      address: miningAddress,
+      address: `0x${miningAddress}`,
       functionName: "seedMarket",
       args: [],
       value: parseEther("0.1"),
@@ -117,7 +117,7 @@ const Mining = () => {
     try {
       const tx = await writeContractAsync({
         abi: miningAbi,
-        address: miningAddress,
+        address: `0x${miningAddress}`,
         functionName: "buyBones",
         args: [],
         value: parseEther(value.toString()),

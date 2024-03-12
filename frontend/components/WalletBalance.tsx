@@ -1,7 +1,7 @@
 import {useAccount, useBalance } from 'wagmi';
 import { formatEther } from 'viem';
 
-export default function () {
+export function WalletBalance() {
   const userAccount = useAccount();
   const contractBalance = useBalance({
     address: userAccount.address,
@@ -13,7 +13,8 @@ export default function () {
   if (contractBalance?.error) 
     return ( 
       <span> 
-        Error: {(contractBalance?.error as BaseError).shortMessage || contractBalance?.error.message} 
+        {/* Error: {(contractBalance?.error as BaseError).shortMessage || contractBalance?.error.message}  */}
+        0.0
       </span> 
     )  
 

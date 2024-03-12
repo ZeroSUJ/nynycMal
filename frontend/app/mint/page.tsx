@@ -48,7 +48,7 @@ const Minting = () => {
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
   const contractAbi = nftmAbi.abi;
-  const [genImg, setGenImg] = useState("");
+  const [genImg, setGenImg] = useState<any[]>([]);
   const [uploadFileName, setUploadFileName] = useState<string>("");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [nftName, setNftName] = useState<string>("");
@@ -172,7 +172,7 @@ const Minting = () => {
     } // or we can use useEffect() hook for state update. the state variable will be update after re-rendering.
     console.log("meta:", metadataUrl);
     const tx2 = await writeContractAsync({
-      address: contractAddress,
+      address: `0x${contractAddress}`,
       abi: contractAbi,
       functionName: "createToken",
       args: [metadataUrl, parseEther("1")],
@@ -209,8 +209,8 @@ const Minting = () => {
       key: "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
       prompt: prompt,
       negative_prompt: "bad quality, ",
-      width: "512",
-      height: "512",
+      width: "1024",
+      height: "1024",
       safety_checker: false,
       seed: null,
       
@@ -219,12 +219,11 @@ const Minting = () => {
       webhook: null,
       track_id: null,
     });
-
-    var requestOptions = {
+    const requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: "follow",
+      redirect: "follow"
     };
 
     fetch("https://modelslab.com/api/v6/realtime/text2img", requestOptions)
