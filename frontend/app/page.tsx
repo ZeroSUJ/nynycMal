@@ -26,7 +26,13 @@ export default function Home() {
             <img src="./logo.png" className="min-w-[140px] w-28" />
           </div>
           <div className='flex flex-row gap-4 items-center'>
-            <button className=' w-44 h-14 btn glass-effect blue-effect btn-glow items-center text-xs justify-items-center hidden sm:block'>Buy NYNYC</button>
+            <Link
+              href="https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3"
+              className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
+              target='_blank'
+            >
+              Buy NYNYC
+            </Link>
             <div className='hidden sm:block'>
               <w3m-button />
             </div>

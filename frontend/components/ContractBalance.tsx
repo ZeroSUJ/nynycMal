@@ -1,6 +1,7 @@
-import { useBalance } from 'wagmi';
+
+import { BaseError, useBalance } from 'wagmi';
 import { formatEther } from 'viem';
-import {address} from '@/contracts/Mining.json';
+import { address } from '@/contracts/Mining.json';
 
 export default function () {
   const contractBalance = useBalance({

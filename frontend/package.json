@@ -30,7 +30,8 @@
     "sweetalert2": "^11.6.13",
     "tw-elements-react": "^1.0.0-alpha2",
     "viem": "^2.7.12",
-    "wagmi": "^2.5.7"
+    "wagmi": "^2.5.7",
+    "web3": "^4.6.0"
   },
   "devDependencies": {
     "@heroicons/react": "^2.1.1",

@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import nftmAbi from "@/contracts/Marketplace.json";
 import { uploadJSONToIPFS } from "./pinata";
 import Content from "@/components/Content";
 import ImageCard from "@/components/ImageCard";
-
 import { FaImages } from "react-icons/fa";
 import {
   Modal,
@@ -36,10 +35,10 @@ import {
   environments,
   buildings,
 } from "@/lib/data/PromptData";
-
 export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
+import Web3 from 'web3';
  
 
 
@@ -63,9 +62,40 @@ const Minting = () => {
     error,
     writeContractAsync,
   } = useWriteContract();
+  const [isActive, setActive] = useState(false);
+
+  const url: string =
+    'https://sepolia.infura.io/v3/e14e866418594599bf7faa569a05b75b';
+  // Configuration for Web3
+  const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
+  const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
+  // const mySPC: string = '0xfF8EF6227F68A16C49FC843d2EdBb6A98B4F8e15';
+  // const contract: any = new web3.eth.Contract(SpaceCreditAbi, tokenAddress);
+
+  useEffect(() => {
+    if (window.ethereum) {
+      console.log("winodw.ethereum", window.ethereum);
+      if (window.ethereum._state.isUnlocked) {
+        setActive(true);
+        console.log("------isUnlocked!!!-----")
+        // connectMetaMask();
+      } else {
+        setActive(false);
+        console.log("------------isLocked!!!-------")
+      }
+    } else {
+      window.alert('Please install wallet');
+      // window.open('https://metamask.io/download.html', '_self');
+    }
+  }, [window.ethereum && window.ethereum._state && window.ethereum._state.isUnlocked]);
 
   const handleClick = () => {
-    onOpen();
+    if(isActive){
+      onOpen();
+    } else {
+      setActive(false);
+      window.alert("Please unlock your wallet")
+    }
     // const account = await web3.eth.getAccounts();
     // console.log("account", account);
     // if (account) {
