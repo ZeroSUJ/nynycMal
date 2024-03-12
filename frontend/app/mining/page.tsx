@@ -63,21 +63,26 @@ const Mining = () => {
     hash,
   });
 
-  const [value, setValue] = useState(0.01);
+  const [value, setValue] = useState<number>(0.01);
 
-  const handleMinusClick = () => {
-    setValue((prevValue) => prevValue - 0.01);
-  };
-  const handlePlusClick = () => {
-    setValue((prevValue) => prevValue + 0.01);
-  };
-  const handleChange = (e: any) => {
+  // const handleMinusClick = () => {
+  //   setValue((prevValue) => prevValue - 0.01);
+  // };
+
+  // const handlePlusClick = () => {
+  //   setValue((prevValue) => prevValue + 0.01);
+  // };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
     if (!isNaN(newValue)) {
       setValue(newValue);
     }
   };
 
+  const handleInputClick = () => {
+    setValue(''); // Clear the input value when input box is clicked
+  };
   const _collectRewards = async () => {
     console.log("_CollectRewards");
     try {
@@ -126,7 +131,6 @@ const Mining = () => {
 
   if (isConfirmed) showToast("success", "transaction confirmed successfully.");
   if (isFailed) showToast("error", "transaction failed.");
-
   return (
     <div className="grid grid-cols-12 w-full h-screen bg-[#090808]">
       <Navbar />
@@ -171,15 +175,40 @@ const Mining = () => {
               </div>
               <div className="mt-3 flex items-center justify-between rounded-lg border-neutral-400 bg-[#27272a] px-4 py-3">
                 <input
-                  className="w-full bg-transparent text-xl focus:outline-none"
-                  type="number"
-                  step="0.01"
-                  min="0.01"
-                  max="200"
-                  pattern="\d+(\.\d{0,2})?"
-                  value={value}
+                  className='w-full bg-transparent text-xl focus:outline-none'
+                  type='number'
+                  step='0.01'
+                  min='0.01'
+                  max='200'
+                  pattern='\d+(\.\d{0,2})?'
+                  value={value === 0 ? '' : value.toString()} // Display empty string if value is 0
                   onChange={handleChange}
+                  onClick={handleInputClick} // Add onClick event to clear input value
                 ></input>
+                {/* <div className='flex gap-4'> */}
+                {/* <img
+                    alt="minus icon"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
+                    src="https://www.minucoin.com/_next/static/media/minus.35c39da3.svg"
+                    onClick={handleMinusClick}
+                  ></img>
+                  <img
+                    alt="plus icon"
+                    loading="lazy"
+                    width="24"
+                    height="24"
+                    decoding="async"
+                    data-nimg="1"
+                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
+                    src="https://www.minucoin.com/_next/static/media/plus.64cfad37.svg"
+                    onClick={handlePlusClick}
+                  ></img> */}
+                {/* </div> */}
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">

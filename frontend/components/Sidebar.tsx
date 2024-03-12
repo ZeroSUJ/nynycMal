@@ -13,8 +13,8 @@ export default function ConnectButton() {
       <div className="flex flex-col">
         <Link
           className={`link ${pathname === '/'
-              ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
-              : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
+            ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
+            : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
           href="/"
         >
@@ -22,8 +22,8 @@ export default function ConnectButton() {
         </Link>
         <Link
           className={`link ${pathname === '/mint'
-              ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
-              : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
+            ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
+            : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
           href="/mint"
         >
@@ -31,8 +31,8 @@ export default function ConnectButton() {
         </Link>
         <Link
           className={`link ${pathname === '/mining'
-              ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
-              : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
+            ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
+            : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
           href="/mining"
         >
@@ -40,8 +40,8 @@ export default function ConnectButton() {
         </Link>
         <Link
           className={`link ${pathname === '/stake'
-              ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
-              : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
+            ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
+            : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
           href="/stake"
         >
@@ -49,8 +49,8 @@ export default function ConnectButton() {
         </Link>
         <Link
           className={`link ${pathname === '/game'
-              ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
-              : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
+            ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
+            : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
           href="/game"
         >
