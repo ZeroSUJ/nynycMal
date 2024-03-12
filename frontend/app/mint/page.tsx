@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import nftmAbi from "@/contracts/Marketplace.json";
 import { uploadJSONToIPFS } from "./pinata";
 import Content from "@/components/Content";
 import ImageCard from "@/components/ImageCard";
-
 import { FaImages } from "react-icons/fa";
 import {
   Modal,
@@ -36,15 +35,16 @@ import {
   environments,
   buildings,
 } from "@/lib/data/PromptData";
-
 export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
+import Web3 from 'web3';
  
 
 
 const Minting = () => {
   const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
+  // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
   const contractAbi = nftmAbi.abi;
@@ -56,23 +56,55 @@ const Minting = () => {
   const [isProcess, setIsProcess] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [selectedList, setSelectedList] = useState([]);
-
-  // const handleUpload = () => {
-  //   setIsUploading(true);
-
-  //   // Your upload logic here
-
-  //   setTimeout(() => {
-  //     setIsUploading(false);
-  //   }, 45000);
-  // };
-
   const {
     data: hash,
     isPending,
     error,
     writeContractAsync,
   } = useWriteContract();
+  const [isActive, setActive] = useState(false);
+
+  const url: string =
+    'https://sepolia.infura.io/v3/e14e866418594599bf7faa569a05b75b';
+  // Configuration for Web3
+  const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
+  const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
+  // const mySPC: string = '0xfF8EF6227F68A16C49FC843d2EdBb6A98B4F8e15';
+  // const contract: any = new web3.eth.Contract(SpaceCreditAbi, tokenAddress);
+
+  useEffect(() => {
+    if (window.ethereum) {
+      console.log("winodw.ethereum", window.ethereum);
+      if (window.ethereum._state.isUnlocked) {
+        setActive(true);
+        console.log("------isUnlocked!!!-----")
+        // connectMetaMask();
+      } else {
+        setActive(false);
+        console.log("------------isLocked!!!-------")
+      }
+    } else {
+      window.alert('Please install wallet');
+      // window.open('https://metamask.io/download.html', '_self');
+    }
+  }, []);
+
+  const handleClick = () => {
+    if(isActive){
+      onOpen();
+    } else {
+      setActive(false);
+      window.alert("Please unlock your wallet")
+    }
+    // const account = await web3.eth.getAccounts();
+    // console.log("account", account);
+    // if (account) {
+    //   console.log("window.ethereum is yes", window.ethereum)
+    //   onOpen;
+    // } else {
+    //   alert('Please connect your wallet!');
+    // }
+  }
 
   // upload metadata of image to the pinata IPFS
   const _uploadMetaData = (nftColName: string, nftFileURL: string) => {
@@ -103,6 +135,7 @@ const Minting = () => {
         });
     });
   };
+
 
   const _mint = async () => {
     console.log("upload:", uploadFileName);
@@ -166,54 +199,6 @@ const Minting = () => {
     " " +
     weather.name;
   console.log(prompt);
-
-  // const GenerateImage = () => {
-  //   // const [showSpinner, setShowSpinner] = useState(false);
-
-
-  //   setIsGenerating(true);
-  //   var myHeaders = new Headers();
-  //   myHeaders.append("Content-Type", "application/json");
-
-  //   var raw = JSON.stringify({
-  //     key: "UNi8wvSz4p6CkM1boPSxccM0GErrbVK3aj84nqZkM3p3cMHkumQ3UNtjFP5P",
-  //     prompt: prompt,
-  //     negative_prompt: "bad quality, ",
-  //     width: "512",
-  //     height: "512",
-  //     safety_checker: false,
-  //     seed: null,
-
-  //     samples: 4,
-  //     base64: false,
-  //     webhook: null,
-  //     track_id: null,
-  //   });
-
-  //   var requestOptions = {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: raw,
-  //     redirect: "follow",
-  //   };
-
-  //   fetch("https://modelslab.com/api/v6/realtime/text2img", requestOptions)
-  //     .then((response) => response.text())
-  //     .then((result) => {
-  //       console.log(result);
-  //       const resultImage = JSON.parse(result);
-  //       if (resultImage.status === "error") {
-  //         // alert(resultImage.message);
-  //         showToast("error", resultImage.message);
-  //         return;
-  //       }
-  //       console.log(resultImage.output);
-  //       const imageData = resultImage.output;
-  //       setGenImg(imageData);
-  //       setIsGenerating(false);
-  //     })
-  //     .catch((error) => console.log("error", error));
-  // };
 
   const GenerateImage = () => {
     setIsGenerating(true);
@@ -344,7 +329,7 @@ const Minting = () => {
               <div className="flex w-full justify-center">
                 <Button
                   className="px-10"
-                  onPress={onOpen}
+                  onClick={handleClick}
                   color="primary"
                   variant="bordered"
                 >

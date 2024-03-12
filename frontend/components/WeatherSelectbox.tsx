@@ -15,7 +15,7 @@ export default function Age(props: any) {
       defaultSelectedKeys={["Clear blue sky with gentle breeze"]}
       className="max-w-s"
     >
-      {(weather) => <SelectItem key={weather.name} style={{ color: 'white' }}>{weather && weather.name}</SelectItem>}
+      {(weather: { name: any; }) => <SelectItem key={weather.name} style={{ color: 'white' }}>{weather && weather.name}</SelectItem>}
     </Select >
   );
 }

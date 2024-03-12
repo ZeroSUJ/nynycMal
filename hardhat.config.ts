@@ -6,9 +6,6 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-console.log(process.env.NEXT_APP_ALCHEMI_API_URL);
-console.log(process.env.NEXT_APP_RRIVATE_KEY);
-
 const config: HardhatUserConfig = {
   defaultNetwork: "localhost",    
   namedAccounts: {
@@ -40,11 +37,17 @@ const config: HardhatUserConfig = {
       }
     }
   },
-  verify: {
-    etherscan: {
-      apiKey: process.env.NEXT_APP_ETHERSCAN_KEY,
-    },
+  // verify: {
+  //   etherscan: {
+  //     apiKey: process.env.NEXT_APP_ETHERSCAN_KEY,
+  //   },
+  // },
+  etherscan: {
+    apiKey: process.env.NEXT_APP_POLY_API,
   },
+  sourcify: {
+    enabled: true,
+  }
 };
 
 export default config;
