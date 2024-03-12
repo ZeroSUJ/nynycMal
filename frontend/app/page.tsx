@@ -78,16 +78,16 @@ export default function Home() {
                 WhitePaper
               </Link>
             </div>
-            <div className='flex items-center'>
-              <Link
+            {/* <div className='flex items-center'> */}
+              {/* <Link
                 href="./admin"
                 target="_blink"
                 className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
               >
                 <BuildingLibraryIcon className="h-8 w-8" />
                 AdminPage
-              </Link>
-            </div>
+              </Link> */}
+            {/* </div> */}
           </div>
         </div>
         <section className="relative flex justify-center items-center mb-32">

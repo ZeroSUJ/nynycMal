@@ -87,7 +87,7 @@ const Minting = () => {
       window.alert('Please install wallet');
       // window.open('https://metamask.io/download.html', '_self');
     }
-  }, [window.ethereum && window.ethereum._state && window.ethereum._state.isUnlocked]);
+  }, []);
 
   const handleClick = () => {
     if(isActive){
