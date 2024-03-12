@@ -1,6 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { NewspaperIcon, PaperAirplaneIcon, BuildingLibraryIcon } from "@heroicons/react/24/outline";
+import { NewspaperIcon, PaperAirplaneIcon, BuildingLibraryIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@nextui-org/react";
 import { FaTelegram, FaDiscord, FaMailBulk, FaFacebook, FaTwitter } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -20,26 +21,40 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <div className="realtive px-20 py-8 min-w-unit-sm">
+      <div className="relative px-20 py-8 min-w-unit-sm">
         <div className="w-full flex justify-between items-center">
-          <div className="hidden sm:block">
+          <div className="hidden lg:block">
             <img src="./logo.png" className="min-w-[140px] w-28" />
           </div>
           <div className='flex flex-row gap-4 items-center'>
             <Link
               href="https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3"
-              className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
+              className="min-w-54 btn glass-effect blue-effect btn-glow hidden lg:block "
               target='_blank'
             >
               Buy NYNYC
             </Link>
-            <div className='hidden sm:block'>
+            <div className='hidden lg:block'>
               <w3m-button />
             </div>
           </div>
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                className='flex justify-center lg:hidden border-white w-8'
+                variant="bordered"
+              >
+                <Bars3Icon className='h-8 w-8' />
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions">
+              <DropdownItem key="new" href='https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3' target="_blank">Buy NYNYC</DropdownItem>
+              <DropdownItem key="copy">Connect Wallet</DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
-        <section className="relative flex justify-center items-center mb-32">
-          <img src="./home-bg.png" className="min-w-[394px] w-[394px] lg:w-[744px]" />
+        <div className="relative flex justify-center items-center my-32 lg:mt-8">
+          <img src="./home-bg.png" className="relative min-w-[394px] w-[394px] lg:w-[744px]" />
           <div className="w-[90%] m-auto flex flex-col items-center gap-4 md:gap-10 absolute transalte-y-1/2">
             <h1 className="font-medium text-center sm:text-center min-text-xl text-2xl md:text-3xl lg:text-4xl xl:text-5xl leading-loose text-white">
               HONESTY | TRANSPARENCY | SIMPLICITY | TRUST
@@ -74,7 +89,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </section>
+        </div>
         <section className="relative flex justify-center items-center mb-32">
           <div className="flex flex-col gap-20 xl:flex-row">
             <div className=" xl:min-w-[450px] lg:min-w-[600px] lg:min-h-[300px] sm:min-w-[400px] sm:min-h-48 min-w-[300px] w-[300px] mx-auto blue-effect glass-effect rounded-xl flex flex-col justify-center items-center">

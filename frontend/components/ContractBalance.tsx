@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+/* eslint-disable import/no-anonymous-default-export */
 
 import { BaseError, useBalance } from 'wagmi';
 import { formatEther } from 'viem';
