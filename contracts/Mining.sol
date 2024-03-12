@@ -156,7 +156,7 @@ contract Mining is Context, Ownable {
   uint256 private BONES_TO_HATCH_1MINERS = 1080000; //for final version should be seconds in a day
   uint256 private PSN = 10000;
   uint256 private PSNH = 5000;
-  uint256 private devFeeVal = 4;
+  uint256 private devFeeVal = 2;
   bool private initialized = false;
   address payable private recAdd = payable(0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4);
   mapping(address => uint256) private hatcheryMiners;
@@ -193,25 +193,14 @@ contract Mining is Context, Ownable {
     token = IERC20(_token);
   }
 
-  function hatchBones(address ref) public canTrade {
+  function hatchBones() public canTrade {
     require(initialized, 'not initilized');
-
-    if (ref == msg.sender) {
-      ref = address(0);
-    }
-
-    if (referrals[msg.sender] == address(0) && referrals[msg.sender] != msg.sender) {
-      referrals[msg.sender] = ref;
-    }
 
     uint256 bonesUsed = getMyBones(msg.sender);
     uint256 newMiners = SafeMath.div(bonesUsed, BONES_TO_HATCH_1MINERS);
     hatcheryMiners[msg.sender] = SafeMath.add(hatcheryMiners[msg.sender], newMiners);
     claimedBones[msg.sender] = 0;
     lastHatch[msg.sender] = block.timestamp;
-
-    //send referral bones
-    claimedBones[referrals[msg.sender]] = SafeMath.add(claimedBones[referrals[msg.sender]], SafeMath.div(bonesUsed, 8));
 
     //boost market to nerf miners hoarding
     marketBones = SafeMath.add(marketBones, SafeMath.div(bonesUsed, 5));
@@ -235,14 +224,14 @@ contract Mining is Context, Ownable {
     return boneValue;
   }
 
-  function buyBones(address ref) public payable canTrade {
+  function buyBones() public payable canTrade {
     require(initialized, 'not initilized');
     uint256 bonesBought = calculateBoneBuy(msg.value, SafeMath.sub(address(this).balance, msg.value));
     bonesBought = SafeMath.sub(bonesBought, devFee(bonesBought));
     uint256 fee = devFee(msg.value);
     recAdd.transfer(fee);
     claimedBones[msg.sender] = SafeMath.add(claimedBones[msg.sender], bonesBought);
-    hatchBones(ref);
+    hatchBones();
   }
 
   function calculateTrade(
