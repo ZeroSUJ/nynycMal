@@ -263,10 +263,10 @@ const Minting = () => {
     });
 
   return (
-    <div className="grid grid-cols-12  w-full h-screen bg-[#090808]">
+    <div className="grid grid-cols-12  w-full h-screen bg-[#090808] relative">
       <Navbar />
       <Sidebar />
-      <Content>
+      <Content >
         <>
           <div className="flex flex-col gap-8 px-8 py-4 ">
             <div className="flex justify-center">
@@ -274,12 +274,12 @@ const Minting = () => {
             </div>
             <p className="px-5 pt-2 text-xl">Examples</p>
             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-6 gap-4">
-              <ImageCard imgSrc="./back.png" />
+              <ImageCard imgSrc="./back1.png" />
               <ImageCard imgSrc="./back2.png" />
               <ImageCard imgSrc="./back3.png" />
               <ImageCard imgSrc="./back4.png" />
-              <ImageCard imgSrc="./back.png" />
-              <ImageCard imgSrc="./back2.png" />
+              <ImageCard imgSrc="./back5.png" />
+              <ImageCard imgSrc="./back6.png" />
             </div>
             <div className="flex flex-col gap-12 p-2 lg:flex-row">
               <div className="flex w-full flex-col">
@@ -307,7 +307,7 @@ const Minting = () => {
               </div>
               <div className="flex flex-col w-full">
                 <div className=" rounded-xl border-2 border-neutral-400 bg-black px-3 py-2">
-                  <p className="text-center text-xl uppercase">Please choose imgages</p>
+                  <p className="text-center text-xl uppercase">Please choose images</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-4 pt-8">
                   {[1, 2, 3, 4].map((id: number) => (

@@ -33,19 +33,25 @@ import Miners from '@/components/miner';
 const Mining = () => {
 
 
-  const [value, setValue] = useState(0.01);
+  const [value, setValue] = useState<number>(0.01);
 
-  const handleMinusClick = () => {
-    setValue((prevValue) => prevValue - 0.01);
-  };
-  const handlePlusClick = () => {
-    setValue((prevValue) => prevValue + 0.01);
-  };
-  const handleChange = (e: any) => {
+  // const handleMinusClick = () => {
+  //   setValue((prevValue) => prevValue - 0.01);
+  // };
+
+  // const handlePlusClick = () => {
+  //   setValue((prevValue) => prevValue + 0.01);
+  // };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);
     if (!isNaN(newValue)) {
       setValue(newValue);
     }
+  };
+
+  const handleInputClick = () => {
+    setValue(''); // Clear the input value when input box is clicked
   };
 
   return (
@@ -79,11 +85,12 @@ const Mining = () => {
                   min='0.01'
                   max='200'
                   pattern='\d+(\.\d{0,2})?'
-                  value={value}
+                  value={value === 0 ? '' : value.toString()} // Display empty string if value is 0
                   onChange={handleChange}
+                  onClick={handleInputClick} // Add onClick event to clear input value
                 ></input>
-                <div className='flex gap-4'>
-                  {/* <img
+                {/* <div className='flex gap-4'> */}
+                {/* <img
                     alt="minus icon"
                     loading="lazy"
                     width="24"
@@ -105,7 +112,7 @@ const Mining = () => {
                     src="https://www.minucoin.com/_next/static/media/plus.64cfad37.svg"
                     onClick={handlePlusClick}
                   ></img> */}
-                </div>
+                {/* </div> */}
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
@@ -138,7 +145,7 @@ const Mining = () => {
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">3</span>
                 <p className="text-xl">Click Collect Rewards to withdraw collected BNB.</p>
               </div>
-              </div>
+            </div>
           </div>
         </div>
         <div className="px-6 pt-8 pb-12">
