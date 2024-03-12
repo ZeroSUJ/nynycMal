@@ -45,6 +45,7 @@ import erc20ABI from "@/contracts/ERC20ABI.json";
 
 const Minting = () => {
   const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
+  // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
   const contractAbi = nftmAbi.abi;
@@ -56,23 +57,24 @@ const Minting = () => {
   const [isProcess, setIsProcess] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [selectedList, setSelectedList] = useState([]);
-
-  // const handleUpload = () => {
-  //   setIsUploading(true);
-
-  //   // Your upload logic here
-
-  //   setTimeout(() => {
-  //     setIsUploading(false);
-  //   }, 45000);
-  // };
-
   const {
     data: hash,
     isPending,
     error,
     writeContractAsync,
   } = useWriteContract();
+
+  const handleClick = () => {
+    onOpen();
+    // const account = await web3.eth.getAccounts();
+    // console.log("account", account);
+    // if (account) {
+    //   console.log("window.ethereum is yes", window.ethereum)
+    //   onOpen;
+    // } else {
+    //   alert('Please connect your wallet!');
+    // }
+  }
 
   // upload metadata of image to the pinata IPFS
   const _uploadMetaData = (nftColName: string, nftFileURL: string) => {
@@ -344,7 +346,7 @@ const Minting = () => {
               <div className="flex w-full justify-center">
                 <Button
                   className="px-10"
-                  onPress={onOpen}
+                  onClick={handleClick}
                   color="primary"
                   variant="bordered"
                 >

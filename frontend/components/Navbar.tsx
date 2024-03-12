@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { IconlyProvider, Home, Notification } from 'react-iconly';
+// import { IconlyProvider, Home, Notification } from 'react-iconly';
 
 export default function ConnectButton() {
   const pathname = usePathname();

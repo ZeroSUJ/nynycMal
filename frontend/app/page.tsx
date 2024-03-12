@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { NewspaperIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { NewspaperIcon, PaperAirplaneIcon, BuildingLibraryIcon } from "@heroicons/react/24/outline";
 import { FaTelegram, FaDiscord, FaMailBulk, FaFacebook, FaTwitter } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -55,6 +55,16 @@ export default function Home() {
               >
                 <NewspaperIcon className="h-8 w-8" />
                 WhitePaper
+              </Link>
+            </div>
+            <div className='flex items-center'>
+              <Link
+                href="./admin"
+                target="_blink"
+                className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
+              >
+                <BuildingLibraryIcon className="h-8 w-8" />
+                AdminPage
               </Link>
             </div>
           </div>
