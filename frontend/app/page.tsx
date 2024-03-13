@@ -113,7 +113,7 @@ export default function Home() {
               <h1 className="font-bold text-md">ABOUT</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className="text-md my-1 hover:text-white hover:underline" href="./NYNYC_whitepaper.pdf">WhitePaper</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="https://res.cloudinary.com/dz6r3o4w0/image/upload/v1710260628/yamdavcortuef97381lf.pdf" target="_block">WhitePaper</Link>
                 <Link className="text-md my-1 hover:text-white hover:underline" href="https://sakais-organization.gitbook.io/nynyc/" target="_block">Documentation</Link>
                 <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinMarketCap</Link>
                 <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinGecko</Link>
