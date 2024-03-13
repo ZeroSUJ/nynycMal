@@ -140,7 +140,7 @@ const Mining = () => {
           <h1 className="text-center text-3xl pt-6 pb-2">Mining BNB</h1>
         </div>
         <div className="flex flex-col gap-12  p-4  lg:flex-row">
-          <div className="flex w-full flex-col gap-4 lg:w-1/2 rounded-md p-4">
+          <div className="flex w-full flex-col gap-7 lg:w-1/2 rounded-md p-4">
             <Miners
               className="flex items-center py-1"
               name="Miners"
@@ -170,7 +170,7 @@ const Mining = () => {
                 <hr className="hidden w-1/3 opacity-40 lg:inline-block" />
                 <p className="text-lg lg:text-xl">
                   MAX:
-                  <span>20 BNB</span>
+                  <span>100 BNB</span>
                 </p>
               </div>
               <div className="mt-3 flex items-center justify-between rounded-lg border-neutral-400 bg-[#27272a] px-4 py-3">
@@ -185,30 +185,6 @@ const Mining = () => {
                   onChange={handleChange}
                   onClick={handleInputClick} // Add onClick event to clear input value
                 ></input>
-                {/* <div className='flex gap-4'> */}
-                {/* <img
-                    alt="minus icon"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
-                    src="https://www.minucoin.com/_next/static/media/minus.35c39da3.svg"
-                    onClick={handleMinusClick}
-                  ></img>
-                  <img
-                    alt="plus icon"
-                    loading="lazy"
-                    width="24"
-                    height="24"
-                    decoding="async"
-                    data-nimg="1"
-                    className="h-7 w-7 transform cursor-pointer opacity-60 transition-transform duration-300 hover:scale-110"
-                    src="https://www.minucoin.com/_next/static/media/plus.64cfad37.svg"
-                    onClick={handlePlusClick}
-                  ></img> */}
-                {/* </div> */}
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
@@ -254,7 +230,7 @@ const Mining = () => {
               ></img>
               <div className="flex flex-col divide-y-2">
                 <p className="text-xl">
-                  Token Balance: {isConnected ? <TokenBalance /> : "0"} BNB
+                  Token Balance: {isConnected ? <TokenBalance /> : "0"} NYNYC
                 </p>
                 <p className="text-xl">
                   Contract Balance: <ContractBalance /> BNB
@@ -265,7 +241,7 @@ const Mining = () => {
               </div>
             </div>
             <hr className="mx-auto w-4/5 opacity-60"></hr>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2">
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700 ">
                   1
@@ -288,10 +264,19 @@ const Mining = () => {
                   Click Collect Rewards to withdraw collected BNB.
                 </p>
               </div>
+              <Link
+                  className="w-full rounded-md px-4 py-5"
+                  color="primary"
+                  type="button"
+                  href="https://bscscan.com/address/0x9b1d531f7aFf3404444Bc3aBBEDBB09A57B66E87#code"
+                  target="_block"
+                >
+                  Go to Smart Contract!
+                </Link>
             </div>
           </div>
         </div>
-        <div className="px-6 pt-8 pb-12">
+        <div className="px-6 pt-5 pb-12">
           <div className="mt-3 rounded-xl border-2 border-neutral-400 bg-black px-3 py-6">
             <p className="text-center text-3xl uppercase">Profit: UP TO 5%</p>
             <p className="text-center mt-2 text-3xl uppercase">TAX: 2%</p>

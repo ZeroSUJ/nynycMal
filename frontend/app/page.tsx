@@ -12,12 +12,7 @@ import loadable from "@loadable/component";
 
 const Exchange = loadable(() => import("@/components/Exchange"));
 
-
-
-// const Exchange = dynamic(() => import('@/components/Exchange'), { ssr: false })
-
 export default function Home() {
-
 
   const router = useRouter();
 
@@ -72,8 +67,8 @@ export default function Home() {
                 Lunch APP
               </Link>
               <Link
-                href="./NYNYC_whitepaper.pdf"
-                target="_blink"
+                href="https://res.cloudinary.com/dz6r3o4w0/image/upload/v1710260628/yamdavcortuef97381lf.pdf"
+                target="_block"
                 className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
               >
                 <NewspaperIcon className="h-8 w-8" />
@@ -114,10 +109,10 @@ export default function Home() {
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
                 <Link className="text-md my-1 hover:text-white hover:underline" href="https://res.cloudinary.com/dz6r3o4w0/image/upload/v1710260628/yamdavcortuef97381lf.pdf" target="_block">WhitePaper</Link>
-                <Link className="text-md my-1 hover:text-white hover:underline" href="https://sakais-organization.gitbook.io/nynyc/" target="_block">Documentation</Link>
-                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinMarketCap</Link>
-                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon">CoinGecko</Link>
-                <Link className="text-md my-1 hover:text-white hover:underline" href="/disclaimer">Disclaimer</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon" target="_block">Documentation</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon" target="_block">CoinMarketCap</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/comingSoon" target="_block">CoinGecko</Link>
+                <Link className="text-md my-1 hover:text-white hover:underline" href="/disclaimer" target="_block">Disclaimer</Link>
               </div>
             </div>
             <div className="flex flex-col text-center items-center xl:text-left xl:items-start">
@@ -135,33 +130,33 @@ export default function Home() {
               <h1 className="font-bold text-md">SUPPORT</h1>
               <div className="w-20 h-0.5 my-3 rounded-full  bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col text-gray-400'>
-                <Link className='text-md my-1 hover:text-white hover:underline' href="/stared">Getting Started</Link>
-                <Link className='text-md my-1 hover:text-white hover:underline' href="/faq">FAQ</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon" target="_block">Getting Started</Link>
+                <Link className='text-md my-1 hover:text-white hover:underline' href="/comingSoon" target="_block">FAQ</Link>
               </div>
             </div>
             <div className="col-span-full justify-self-center xl:col-span-1 xl:justify-self-start">
               <h1 className="text-left font-bold text-md hidden xl:block">COMMUNITY</h1>
               <div className="items-start w-20 h-0.5 my-3 rounded-full hidden xl:block bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col items-center sm:flex-row gap-10 xl:gap-1 xl:block'>
-                <Link className="flex items-center gap-4 text-gray-400" href="https://web.telegram.org/a/#-1002038937912">
+                <Link className="flex items-center gap-4 text-gray-400" href="https://web.telegram.org/a/#-1002038937912" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaTelegram className="h-10 w-10 p-2" />
                   </div>
                   <h1 className="hidden xl:block hover:text-white hover:underline">Telegram</h1>
                 </Link>
-                <Link className="flex items-center gap-4 text-gray-400" href="https://www.facebook.com/NYNYCoins">
+                <Link className="flex items-center gap-4 text-gray-400" href="https://www.facebook.com/NYNYCoins" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaFacebook className="h-10 w-10 p-2" />
                   </div>
                   <h1 className="hidden xl:block hover:text-white hover:underline">Facebook</h1>
                 </Link>
-                <Link className="flex items-center gap-4 text-gray-400" href="https://twitter.com/nynycoins">
+                <Link className="flex items-center gap-4 text-gray-400" href="https://twitter.com/nynycoins" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaTwitter className="h-10 w-10 p-2" />
                   </div>
                   <h1 className="hidden xl:block hover:text-white hover:underline">Twitter</h1>
                 </Link>
-                <Link className="flex items-center gap-4 text-gray-400" href="https://discord.com/channels/1193296401245950033/1193296401245950036">
+                <Link className="flex items-center gap-4 text-gray-400" href="https://discord.com/channels/1193296401245950033/1193296401245950036" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaDiscord className="h-10 w-10 p-2" />
                   </div>

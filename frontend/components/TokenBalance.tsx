@@ -4,7 +4,8 @@ import { formatEther } from 'viem';
 
 export function TokenBalance() {
   const userAccount = useAccount();
-  const tokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
+  const tokenAddress = "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3";
+  const tokenDecimals = 3;
   const { 
     data: balance,
     error, 
@@ -15,8 +16,9 @@ export function TokenBalance() {
     functionName: 'balanceOf',
     args: [userAccount.address],
   })
-  const balanceValue: string | any = balance;
 
+  const balanceValue: string | any = balance;
+  console.log("---balanceValue---", balanceValue);
   if (isPending) return <span>Loading...</span> 
 
   if (error) 
@@ -27,6 +29,6 @@ export function TokenBalance() {
     )
 
   return (
-    <span>{formatEther(balanceValue.toString())}</span>
+    <span>{(parseInt(balanceValue) / 10 ** tokenDecimals).toString()}</span>
   )
 }

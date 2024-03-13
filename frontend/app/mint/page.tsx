@@ -43,7 +43,7 @@ import Web3 from 'web3';
 
 
 const Minting = () => {
-  const erc20TokenAddress = "0x0406dbBF7B62f79F8d889F30cC1F0E9191c404D4";
+  const erc20TokenAddress = "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3";
   // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
@@ -141,11 +141,33 @@ const Minting = () => {
     console.log("upload:", uploadFileName);
     const metadataUrl: string[] = [];
     setIsProcess(true);
+    let imageAmount = genImg.length;
+    let tokenAmount = 0;
+    switch(imageAmount) {
+      case 0:
+        tokenAmount = 0;
+        break;
+      case 1:
+        tokenAmount = 2000;
+        break;
+      case 2:
+        tokenAmount = 3500;
+        break;
+      case 3:
+        tokenAmount = 4500;
+        break;
+      case 4:
+        tokenAmount = 5000;
+        break;
+      default:
+        tokenAmount = 0;
+        break;
+    }
     const tx = await writeContractAsync({
       abi: erc20ABI,
       address: erc20TokenAddress,
       functionName: "approve",
-      args: [contractAddress, parseEther("1")],
+      args: [contractAddress, parseEther(tokenAmount.toString())],
     });
     console.log("tx1:", tx);
 
@@ -175,7 +197,7 @@ const Minting = () => {
       address: `0x${contractAddress}`,
       abi: contractAbi,
       functionName: "createToken",
-      args: [metadataUrl, parseEther("1")],
+      args: [metadataUrl, parseEther(tokenAmount.toString())],
     });
     console.log("tx2:", tx2);
     setIsProcess(false);
