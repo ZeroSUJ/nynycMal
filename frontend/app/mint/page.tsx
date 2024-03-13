@@ -296,7 +296,7 @@ const Minting = () => {
                     value={inputVal}
                     onChange={(e) => setInputVal(e.target.value)}
                     type="text"
-                    label="Imagine"
+                    label="ex: a man"
                   />
                 </div>
                 <Building building={building} setBuilding={setBuilding} />

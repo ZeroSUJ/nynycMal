@@ -64,7 +64,7 @@ export default function Home() {
                 className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
               >
                 <PaperAirplaneIcon className="h-8 w-8" />
-                Lunch APP
+                Go to Apps
               </Link>
               <Link
                 href="https://res.cloudinary.com/dz6r3o4w0/image/upload/v1710260628/yamdavcortuef97381lf.pdf"

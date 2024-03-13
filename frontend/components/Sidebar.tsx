@@ -43,16 +43,16 @@ export default function ConnectButton() {
             ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
             : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
-          href="/stake"
+          href="/comingSoon"
         >
-          NFT stake
+          Staking
         </Link>
         <Link
           className={`link ${pathname === '/game'
             ? 'text-lg bg-slate-800 p-3 rounded-md hover:cursor-pointer'
             : 'text-lg hover:bg-slate-300 p-3 rounded-md hover:cursor-pointer'
             }`}
-          href="/game"
+          href="/comingSoon"
         >
           Game
         </Link>
