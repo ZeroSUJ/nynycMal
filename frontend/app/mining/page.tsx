@@ -27,11 +27,11 @@ import {
 export type DataType = { building_name: string };
 import { formatEther, parseEther } from "viem";
 import Miners from "@/components/miner";
-import {TokenBalance} from "@/components/TokenBalance";
+import { TokenBalance } from "@/components/TokenBalance";
 import ContractBalance from "@/components/ContractBalance";
-import {WalletBalance} from "@/components/WalletBalance";
+import { WalletBalance } from "@/components/WalletBalance";
 import GetMiner from "@/components/GetMiner";
-import {GetRewards} from "@/components/GetRewards";
+import { GetRewards } from "@/components/GetRewards";
 import GetSpeed from "@/components/GetSpeed";
 
 import erc20Abi from "@/contracts/ERC20ABI.json";
@@ -140,7 +140,7 @@ const Mining = () => {
           <h1 className="text-center text-3xl pt-6 pb-2">Mining BNB</h1>
         </div>
         <div className="flex flex-col gap-12  p-4  lg:flex-row">
-          <div className="flex w-full flex-col gap-7 lg:w-1/2 rounded-md p-4">
+          <div className="flex w-full flex-col gap-8 lg:w-1/2 rounded-md p-4">
             <Miners
               className="flex items-center py-1"
               name="Miners"
@@ -212,6 +212,20 @@ const Mining = () => {
                     ? "Processing..."
                     : "Collect Rewards"}
                 </Button>
+                <Link
+                  className="w-full"
+                  href="https://bscscan.com/address/0x9b1d531f7aFf3404444Bc3aBBEDBB09A57B66E87#code"
+                  target="_block"
+                  >
+                  <Button
+                    color="primary"
+                    variant="bordered"
+                    className="w-full rounded-md px-4 py-5"
+                    type="button"
+                  >
+                    View to Smart Contract!
+                  </Button>
+                </Link>
               </div>
             </form>
           </div>
@@ -264,15 +278,14 @@ const Mining = () => {
                   Click Collect Rewards to withdraw collected BNB.
                 </p>
               </div>
-              <Link
-                  className="w-full rounded-md px-4 py-5"
-                  color="primary"
-                  type="button"
-                  href="https://bscscan.com/address/0x9b1d531f7aFf3404444Bc3aBBEDBB09A57B66E87#code"
-                  target="_block"
-                >
-                  Go to Smart Contract!
-                </Link>
+              <div className="flex items-center gap-4 py-2">
+                <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
+                  4
+                </span>
+                <p className="text-xl">
+                  You can collect rewards every two days.
+                </p>
+              </div>
             </div>
           </div>
         </div>
