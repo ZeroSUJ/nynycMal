@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import dynamic from 'next/dynamic'
 import { NewspaperIcon, PaperAirplaneIcon, BuildingLibraryIcon, Bars3Icon } from "@heroicons/react/24/outline";
