@@ -8,7 +8,8 @@ const token = process.env.NEXT_APP_PINATA_JWT;
 export const uploadJSONToIPFS = async(JSONBody: any) => {
   return new Promise((resolve, reject)=>{
     const url = `https://api.pinata.cloud/pinning/pinJSONToIPFS`;
-    //making axios POST request to Pinata ⬇️
+    //making axios POST request to Pinata 
+    console.log("pinata token:", token);
     axios
       .post(url, JSONBody, {
         headers: {
