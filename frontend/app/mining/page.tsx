@@ -182,7 +182,7 @@ const Mining = () => {
                   variant="bordered"
                   type="button"
                   onClick={_hireMiner}
-                  isDisabled={!isConnected || isConfirming || isPending}
+                  isDisabled={!isConnected || isConfirming || isPending }
                   isLoading={isConfirming}
                 >
                   {isConfirming || isPending ? "Processing..." : "Hire Miners"}

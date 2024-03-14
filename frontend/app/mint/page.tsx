@@ -125,7 +125,7 @@ const Minting = () => {
     console.log("upload:", uploadFileName);
     const metadataUrl: string[] = [];
     setIsProcess(true);
-    let imageAmount = genImg.length;
+    let imageAmount = selectedList.length;
     let tokenAmount = 0;
     switch(imageAmount) {
       case 0:
