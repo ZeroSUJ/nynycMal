@@ -40,13 +40,13 @@ export type DataType = { building_name: string };
 import { parseEther } from "viem";
 import erc20ABI from "@/contracts/ERC20ABI.json";
 import Web3 from 'web3';
- 
+
 
 
 const Minting = () => {
   const erc20TokenAddress = "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3";
   const userAccount = useAccount();
-  const { address, isConnected} = userAccount;
+  const { address, isConnected } = userAccount;
   // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
@@ -61,11 +61,11 @@ const Minting = () => {
   const [selectedList, setSelectedList] = useState([]);
   const [isActive, setActive] = useState(false);
 
-  const url: string =
-    'https://sepolia.infura.io/v3/e14e866418594599bf7faa569a05b75b';
-  // Configuration for Web3
-  const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
-  const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
+  // const url: string =
+  //   'https://sepolia.infura.io/v3/e14e866418594599bf7faa569a05b75b';
+  // // Configuration for Web3
+  // const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
+  // const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
   const {
     data: hash,
     isPending,
@@ -116,6 +116,7 @@ const Minting = () => {
         .catch((err) => {
           console.log("Uploaded JSON to Pinata: ", err);
           reject(err);
+          showToast("error", "Uploading Error");
         });
     });
   };
@@ -127,7 +128,7 @@ const Minting = () => {
     setIsProcess(true);
     let imageAmount = selectedList.length;
     let tokenAmount = 0;
-    switch(imageAmount) {
+    switch (imageAmount) {
       case 0:
         tokenAmount = 0;
         break;
@@ -147,43 +148,56 @@ const Minting = () => {
         tokenAmount = 0;
         break;
     }
-    const tx = await writeContractAsync({
-      abi: erc20ABI,
-      address: erc20TokenAddress,
-      functionName: "approve",
-      args: [`0x${contractAddress}`, tokenAmount.toString()],
-    });
-    console.log("tx1:", tx);
-
-    // const result = await uploadFileToIPFS(uploadFileName);
-    // if (result?.success === true) {
-    //   setFileURL(result?.pinataURL);
-    // } else {
-    //   showToast("error", "Uploading Error");
-    // }
-    // _uploadMetaData(nftName, result?.pinataURL).then(async(res)=>{
-    console.log("genImg:", genImg);
-    for (let i = 0; i < selectedList.length; i++) {
-      const it = selectedList[i] - 1;
-      console.log("img : ", genImg[it]);
-      const uploadRes: any = await _uploadMetaData(nftName, genImg[it]);
-      if (uploadRes.success === true) {
-        showToast("success", "Successfully uploaded");
-        console.log("uploaded Metadata url:", uploadRes?.pinataURL);
-        metadataUrl.push(uploadRes?.pinataURL);
-      } else {
-        showToast("error", "Metadata uploading error!");
-        console.log(uploadRes?.message);
-      }
-    } // or we can use useEffect() hook for state update. the state variable will be update after re-rendering.
-    console.log("meta:", metadataUrl);
-    const tx2 = await writeContractAsync({
-      address: `0x${contractAddress}`,
-      abi: contractAbi,
-      functionName: "createToken",
-      args: [metadataUrl, tokenAmount.toString()],
-    });
-    console.log("tx2:", tx2);
+    try {
+      const tx = await writeContractAsync({
+        abi: erc20ABI,
+        address: erc20TokenAddress,
+        functionName: "approve",
+        args: [`0x${contractAddress}`, tokenAmount.toString()],
+      });
+      console.log("tx1:", tx);
+    } catch (err) {
+      console.log("err:", err);;
+      setIsProcess(false);
+      showToast("error", "Transaction reverted");
+      return;
+    }
+    try {
+      console.log("genImg:", genImg);
+      for (let i = 0; i < selectedList.length; i++) {
+        const it = selectedList[i] - 1;
+        console.log("img : ", genImg[it]);
+        const uploadRes: any = await _uploadMetaData(nftName, genImg[it]);
+        if (uploadRes.success === true) {
+          showToast("success", "Successfully uploaded");
+          console.log("uploaded Metadata url:", uploadRes?.pinataURL);
+          metadataUrl.push(uploadRes?.pinataURL);
+        } else {
+          showToast("error", "Metadata uploading error!");
+          console.log(uploadRes?.message);
+        }
+      } // or we can use useEffect() hook for state update. the state variable will be update after re-rendering.
+      console.log("meta:", metadataUrl);
+    } catch (error) {
+      console.log(error);
+      setIsProcess(false);
+      showToast("error", "Error occured!");
+      return;
+    }
+    try {
+      const tx2 = await writeContractAsync({
+        address: `0x${contractAddress}`,
+        abi: contractAbi,
+        functionName: "createToken",
+        args: [metadataUrl, tokenAmount.toString()],
+      });
+      console.log("tx2:", tx2);
+    } catch (error) {
+      console.log(error);
+      showToast("error", "Error occured!");
+      setIsProcess(false);
+      return;
+    }
     setIsProcess(false);
   };
 
@@ -219,7 +233,7 @@ const Minting = () => {
       height: "1024",
       safety_checker: false,
       seed: null,
-      
+
       samples: 4,
       base64: false,
       webhook: null,
