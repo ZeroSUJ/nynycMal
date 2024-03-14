@@ -44,9 +44,6 @@ import { showToast } from "@/helper/ToastNotify";
 const Mining = () => {
   const userAccount = useAccount();
   const { address, isConnected } = userAccount;
-  // useEffect(()=>{
-  //   console.log('updated state');
-  // }, [isConnected]);
 
   const {
     data: hash,
@@ -64,14 +61,6 @@ const Mining = () => {
   });
 
   const [value, setValue] = useState<number>(0.01);
-
-  // const handleMinusClick = () => {
-  //   setValue((prevValue) => prevValue - 0.01);
-  // };
-
-  // const handlePlusClick = () => {
-  //   setValue((prevValue) => prevValue + 0.01);
-  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseFloat(e.target.value);

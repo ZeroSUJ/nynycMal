@@ -22,6 +22,7 @@ import { showToast } from "@/helper/ToastNotify";
 import {
   useWaitForTransactionReceipt,
   useWriteContract,
+  useAccount
 } from "wagmi";
 import Building from "@/components/Building";
 import Age from "@/components/AgeSelectbox";
@@ -44,6 +45,8 @@ import Web3 from 'web3';
 
 const Minting = () => {
   const erc20TokenAddress = "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3";
+  const userAccount = useAccount();
+  const { address, isConnected} = userAccount;
   // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
@@ -56,12 +59,6 @@ const Minting = () => {
   const [isProcess, setIsProcess] = useState<boolean>(false);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [selectedList, setSelectedList] = useState([]);
-  const {
-    data: hash,
-    isPending,
-    error,
-    writeContractAsync,
-  } = useWriteContract();
   const [isActive, setActive] = useState(false);
 
   const url: string =
@@ -69,42 +66,29 @@ const Minting = () => {
   // Configuration for Web3
   const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
   const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
-  // const mySPC: string = '0xfF8EF6227F68A16C49FC843d2EdBb6A98B4F8e15';
-  // const contract: any = new web3.eth.Contract(SpaceCreditAbi, tokenAddress);
+  const {
+    data: hash,
+    isPending,
+    error,
+    writeContractAsync,
+  } = useWriteContract();
 
-  useEffect(() => {
-    if (window.ethereum) {
-      console.log("winodw.ethereum", window.ethereum);
-      if (window.ethereum._state.isUnlocked) {
-        setActive(true);
-        console.log("------isUnlocked!!!-----")
-        // connectMetaMask();
-      } else {
-        setActive(false);
-        console.log("------------isLocked!!!-------")
-      }
-    } else {
-      window.alert('Please install wallet');
-      // window.open('https://metamask.io/download.html', '_self');
-    }
-  }, []);
-
-  const handleClick = () => {
-    if(isActive){
-      onOpen();
-    } else {
-      setActive(false);
-      window.alert("Please unlock your wallet")
-    }
-    // const account = await web3.eth.getAccounts();
-    // console.log("account", account);
-    // if (account) {
-    //   console.log("window.ethereum is yes", window.ethereum)
-    //   onOpen;
-    // } else {
-    //   alert('Please connect your wallet!');
-    // }
-  }
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     console.log("winodw.ethereum", window.ethereum);
+  //     if (window.ethereum._state.isUnlocked) {
+  //       setActive(true);
+  //       console.log("------isUnlocked!!!-----")
+  //       // connectMetaMask();
+  //     } else {
+  //       setActive(false);
+  //       console.log("------------isLocked!!!-------")
+  //     }
+  //   } else {
+  //     window.alert('Please install wallet');
+  //     // window.open('https://metamask.io/download.html', '_self');
+  //   }
+  // }, []);
 
   // upload metadata of image to the pinata IPFS
   const _uploadMetaData = (nftColName: string, nftFileURL: string) => {
@@ -350,9 +334,11 @@ const Minting = () => {
               <div className="flex w-full justify-center">
                 <Button
                   className="px-10"
-                  onClick={handleClick}
+                  onClick={onOpen}
                   color="primary"
                   variant="bordered"
+                  isDisabled={!isConnected || isConfirming || isPending}
+                  isLoading={isConfirming}
                 >
                   Mint NFT
                 </Button>

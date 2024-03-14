@@ -38,15 +38,25 @@ export default function Home() {
           <Dropdown>
             <DropdownTrigger>
               <Button
-                className='flex justify-center lg:hidden border-white w-8'
+                className='flex justify-center lg:hidden border-white'
                 variant="bordered"
               >
                 <Bars3Icon className='h-8 w-8' />
               </Button>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions">
-              <DropdownItem key="new" href='https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3' target="_blank">Buy NYNYC</DropdownItem>
-              <DropdownItem key="copy">Connect Wallet</DropdownItem>
+            <DropdownMenu aria-label="Static Actions" className='w-32'>
+              <DropdownItem
+                href='https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3'
+                className="text-center w-[120px] h-[32px] px-0 rounded-full blue-effect bg-red-500 hover:bg-red-700 "
+                target="_blank"
+              >
+                <span className='font-bold'>
+                  Buy NYNYC
+                </span>
+              </DropdownItem>
+              <DropdownItem className='w-[120px] h-[32px] px-0 rounded-full'>
+                <w3m-button />
+              </DropdownItem>
             </DropdownMenu>
           </Dropdown>
         </div>
@@ -76,7 +86,7 @@ export default function Home() {
               </Link>
             </div>
             {/* <div className='flex items-center'> */}
-              {/* <Link
+            {/* <Link
                 href="./admin"
                 target="_blink"
                 className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
