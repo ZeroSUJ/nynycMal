@@ -174,7 +174,7 @@ const Mining = () => {
                   onClick={handleInputClick} // Add onClick event to clear input value
                 ></input>
               </div>
-              <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK BUY BELOW</p>
+              <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK HIRE MINERS</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
                 <Button
                   className="w-full rounded-md px-4 py-5"
@@ -271,7 +271,7 @@ const Mining = () => {
                   4
                 </span>
                 <p className="text-xl">
-                  You can collect rewards every two days.
+                  You can collect 4% rewards every two days.
                 </p>
               </div>
             </div>

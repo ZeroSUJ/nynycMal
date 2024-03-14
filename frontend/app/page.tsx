@@ -44,7 +44,7 @@ export default function Home() {
                 <Bars3Icon className='h-8 w-8' />
               </Button>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions" className='w-32'>
+            <DropdownMenu aria-label="Static Actions" className='w-32 lg:hidden'>
               <DropdownItem
                 href='https://pancakeswap.finance/swap?outputCurrency=0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3'
                 className="text-center w-[120px] h-[32px] px-0 rounded-full blue-effect bg-red-500 hover:bg-red-700 "

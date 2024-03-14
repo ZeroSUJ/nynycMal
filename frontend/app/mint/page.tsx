@@ -133,16 +133,16 @@ const Minting = () => {
         tokenAmount = 0;
         break;
       case 1:
-        tokenAmount = 2000;
+        tokenAmount = 2000000;
         break;
       case 2:
-        tokenAmount = 3500;
+        tokenAmount = 3500000;
         break;
       case 3:
-        tokenAmount = 4500;
+        tokenAmount = 4500000;
         break;
       case 4:
-        tokenAmount = 5000;
+        tokenAmount = 5000000;
         break;
       default:
         tokenAmount = 0;
@@ -368,7 +368,13 @@ const Minting = () => {
                     NFT Minting
                   </ModalHeader>
                   <ModalBody>
-                    <p>Please input name</p>
+                    {/* <p>Please input name</p> */}
+                    <p>This is the number of NYNYC tokens required to mint NFT once.</p>
+                    <p>One Image: 2000 NYNYC</p>
+                    <p>Two Images: 3500 NYNYC</p>
+                    <p>Three Images: 4500 NYNYC</p>
+                    <p>Four Images: 5000 NYNYC</p>
+                    <div className=" text-red-500">Please input NFT name</div>
                     <div>
                       <Input
                         autoFocus
