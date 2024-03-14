@@ -151,7 +151,7 @@ const Minting = () => {
       abi: erc20ABI,
       address: erc20TokenAddress,
       functionName: "approve",
-      args: [contractAddress, parseEther(tokenAmount.toString())],
+      args: [`0x${contractAddress}`, parseEther(tokenAmount.toString())],
     });
     console.log("tx1:", tx);
 

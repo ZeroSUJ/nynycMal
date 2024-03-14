@@ -34,7 +34,6 @@ import GetMiner from "@/components/GetMiner";
 import { GetRewards } from "@/components/GetRewards";
 import GetSpeed from "@/components/GetSpeed";
 
-import erc20Abi from "@/contracts/ERC20ABI.json";
 import {
   abi as miningAbi,
   address as miningAddress,
