@@ -151,7 +151,7 @@ const Minting = () => {
       abi: erc20ABI,
       address: erc20TokenAddress,
       functionName: "approve",
-      args: [`0x${contractAddress}`, parseEther(tokenAmount.toString())],
+      args: [`0x${contractAddress}`, tokenAmount.toString()],
     });
     console.log("tx1:", tx);
 
@@ -181,7 +181,7 @@ const Minting = () => {
       address: `0x${contractAddress}`,
       abi: contractAbi,
       functionName: "createToken",
-      args: [metadataUrl, parseEther(tokenAmount.toString())],
+      args: [metadataUrl, tokenAmount.toString()],
     });
     console.log("tx2:", tx2);
     setIsProcess(false);
