@@ -21,7 +21,7 @@ export default function Home() {
 
   const userAccount = useAccount();
   const { address, isConnected } = userAccount;
-  const NYNYC1 = "0x76978AEDC91a9Dc2c824121e86a74fF347f1A29d";
+  const NYNYC1 = "0x00913C6C8ae1458b3DD6Bb1010106Fc74a0a9C7C";
   const router = useRouter();
 
   return (
