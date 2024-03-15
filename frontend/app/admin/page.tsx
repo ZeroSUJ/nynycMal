@@ -36,6 +36,7 @@ const Admin = () => {
 
   const _setTradingState = async () => {
     console.log("_setTradingState");
+    console.log("tradingState", BigInt(traState));
     try {
       const tx = await writeContractAsync({
         abi: miningAbi,
