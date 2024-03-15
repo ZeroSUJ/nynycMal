@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-12-12
+ */
+
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.20;
@@ -75,7 +79,7 @@ contract Mining is Context, Ownable {
 
     if (tradingState == 0) require(owner() == _msgSender(), 'trades are not enabled');
 
-    require(owner() == _msgSender() || token.balanceOf(_msgSender()) > 50000, 'should be more than 50000 NYNYC');
+    require(owner() == _msgSender() || token.balanceOf(_msgSender()) != 0, 'should be a MINE holder');
 
     _;
   }
@@ -176,7 +180,7 @@ contract Mining is Context, Ownable {
 
   function getBonesSinceLastHatch(address adr) public view returns (uint256) {
     uint256 secondsPassed = min(BONES_TO_HATCH_1MINERS, (block.timestamp - lastHatch[adr]));
-    return secondsPassed * hatcheryMiners[adr];
+    return secondsPassed * hatcheryMiners[adr] / 3;
   }
   function min(uint256 a, uint256 b) private pure returns (uint256) {
     return a < b ? a : b;
