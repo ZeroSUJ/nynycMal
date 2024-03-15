@@ -42,7 +42,7 @@ const Admin = () => {
         address: `0x${miningAddress}`,
         functionName: "setTradingState",
         args: [],
-        value: parseEther(traState.toString()),
+        value: BigInt(traState),
       });
       console.log("tx:", tx);
     } catch (err) {
