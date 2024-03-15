@@ -36,14 +36,13 @@ const Admin = () => {
 
   const _setTradingState = async () => {
     console.log("_setTradingState");
-    console.log("tradingState", BigInt(traState));
+    console.log("tradingState", BigInt(traState))
     try {
       const tx = await writeContractAsync({
         abi: miningAbi,
         address: `0x${miningAddress}`,
         functionName: "setTradingState",
-        args: [],
-        value: BigInt(traState),
+        args: [BigInt(traState)],
       });
       console.log("tx:", tx);
     } catch (err) {
