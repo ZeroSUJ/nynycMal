@@ -334,8 +334,8 @@ const Minting = () => {
                   onClick={onOpen}
                   color="primary"
                   variant="bordered"
-                  isDisabled={!isConnected || isConfirming || isPending}
-                  isLoading={isConfirming}
+                  isDisabled={isProcess}
+                  isLoading={isProcess}
                 >
                   Mint NFT
                 </Button>
@@ -378,16 +378,16 @@ const Minting = () => {
                     <Button
                       color="primary"
                       onClick={_mint}
-                      isLoading={isProcess || isPending || isConfirming}
+                      isLoading={isProcess}
                     >
-                      {isPending || isConfirming ? "Confirming..." : "Mint"}
+                      {isProcess ? "Processing..." : "Mint"}
                     </Button>
-                    {isConfirming &&
+                    {/* {isConfirming &&
                       showToast(
                         "info",
                         "waiting for Transaction comfirming..."
                       )}
-                    {error && showToast("error", error.message)}
+                    {error && showToast("error", error.message)} */}
                   </ModalFooter>
                 </>
               )}
