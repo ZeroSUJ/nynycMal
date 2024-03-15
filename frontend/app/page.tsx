@@ -7,13 +7,21 @@ import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button } from "@
 import { FaTelegram, FaDiscord, FaMailBulk, FaFacebook, FaTwitter } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import loadable from "@loadable/component";
+import {
+  useWaitForTransactionReceipt,
+  useWriteContract,
+  useAccount
+} from "wagmi";
 
 const Exchange = loadable(() => import("@/components/Exchange"));
 
 export default function Home() {
 
+  const userAccount = useAccount();
+  const { address, isConnected } = userAccount;
+  const NYNYC1 = "0x00913C6C8ae1458b3DD6Bb1010106Fc74a0a9C7C";
   const router = useRouter();
 
   return (
@@ -85,16 +93,18 @@ export default function Home() {
                 WhitePaper
               </Link>
             </div>
-            {/* <div className='flex items-center'> */}
-            {/* <Link
-                href="./admin"
-                target="_blink"
-                className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
-              >
-                <BuildingLibraryIcon className="h-8 w-8" />
-                AdminPage
-              </Link> */}
-            {/* </div> */}
+            {
+              address == NYNYC1 && <div className='flex items-center'>
+                <Link
+                  href="./admin"
+                  target="_blink"
+                  className="min-w-54 btn glass-effect blue-effect btn-glow flex items-center"
+                >
+                  <BuildingLibraryIcon className="h-8 w-8" />
+                  AdminPage
+                </Link>
+              </div>
+            }
           </div>
         </div>
         <section className="relative flex justify-center items-center mb-32">

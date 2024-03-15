@@ -1,7 +1,3 @@
-/**
- *Submitted for verification at BscScan.com on 2022-12-12
- */
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.20;
@@ -79,7 +75,7 @@ contract Mining is Context, Ownable {
 
     if (tradingState == 0) require(owner() == _msgSender(), 'trades are not enabled');
 
-    require(owner() == _msgSender() || token.balanceOf(_msgSender()) != 0, 'should be a MINE holder');
+    require(owner() == _msgSender() || token.balanceOf(_msgSender()) > 50000, 'should be more than 50000 NYNYC');
 
     _;
   }

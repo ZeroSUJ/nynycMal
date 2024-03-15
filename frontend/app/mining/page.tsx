@@ -87,19 +87,6 @@ const Mining = () => {
     }
   };
 
-  const _seedMarket = async () => {
-    console.log("seed Market:");
-    const tx = await writeContractAsync({
-      abi: miningAbi,
-      address: `0x${miningAddress}`,
-      functionName: "seedMarket",
-      args: [],
-      value: parseEther("0.1"),
-    });
-
-    console.log("tx:", tx);
-  };
-
   const _hireMiner = async () => {
     console.log("_hireMiner");
     try {

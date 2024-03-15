@@ -73,23 +73,6 @@ const Minting = () => {
     writeContractAsync,
   } = useWriteContract();
 
-  // useEffect(() => {
-  //   if (window.ethereum) {
-  //     console.log("winodw.ethereum", window.ethereum);
-  //     if (window.ethereum._state.isUnlocked) {
-  //       setActive(true);
-  //       console.log("------isUnlocked!!!-----")
-  //       // connectMetaMask();
-  //     } else {
-  //       setActive(false);
-  //       console.log("------------isLocked!!!-------")
-  //     }
-  //   } else {
-  //     window.alert('Please install wallet');
-  //     // window.open('https://metamask.io/download.html', '_self');
-  //   }
-  // }, []);
-
   // upload metadata of image to the pinata IPFS
   const _uploadMetaData = (nftColName: string, nftFileURL: string) => {
     return new Promise((resolve, reject) => {
@@ -404,8 +387,6 @@ const Minting = () => {
                         "info",
                         "waiting for Transaction comfirming..."
                       )}
-                    {/* {isConfirmed && showToast("success", "Transaction confirmed. NFT Minted!")} */}
-                    {/* {isConfirmed && onClose()} */}
                     {error && showToast("error", error.message)}
                   </ModalFooter>
                 </>
