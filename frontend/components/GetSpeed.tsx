@@ -21,5 +21,5 @@ export default function () {
   
   if (error) return '0';
 
-  return formatEther(balanceValue);
+  return formatEther(balanceValue * BigInt(172800));
 }
