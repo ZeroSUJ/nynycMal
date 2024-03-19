@@ -115,7 +115,7 @@ const Mining = () => {
           <h1 className="text-center text-3xl pt-6 pb-2">Mining BNB</h1>
         </div>
         <div className="flex flex-col gap-12  p-4  lg:flex-row">
-          <div className="flex w-full flex-col gap-8 lg:w-1/2 rounded-md p-4">
+          <div className="flex w-full flex-col gap-10 lg:w-1/2 rounded-md p-4">
             <Miners
               className="flex items-center py-1"
               name="Miners"
@@ -136,7 +136,7 @@ const Mining = () => {
               number={isConnected ? <GetRewards /> : "0"}
               unit="BNB"
             />
-            <form className="flex flex-col lg:px-4">
+            <form className="flex flex-col lg:px-4 gap-4">
               <div className="mt-8 flex items-center justify-between">
                 <p className="text-lg lg:text-xl">
                   MIN:
@@ -169,7 +169,7 @@ const Mining = () => {
                   variant="bordered"
                   type="button"
                   onClick={_hireMiner}
-                  isDisabled={!isConnected || isConfirming || isPending }
+                  isDisabled={!isConnected || isConfirming || isPending}
                   isLoading={isConfirming}
                 >
                   {isConfirming || isPending ? "Processing..." : "Hire Miners"}
@@ -191,7 +191,7 @@ const Mining = () => {
                   className="w-full"
                   href="https://bscscan.com/address/0x9b1d531f7aFf3404444Bc3aBBEDBB09A57B66E87#code"
                   target="_block"
-                  >
+                >
                   <Button
                     color="primary"
                     variant="bordered"
@@ -230,7 +230,7 @@ const Mining = () => {
               </div>
             </div>
             <hr className="mx-auto w-4/5 opacity-60"></hr>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700 ">
                   1
@@ -243,7 +243,7 @@ const Mining = () => {
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
                   2
                 </span>
-                <p className="text-xl">Hire Miners using BNB. You can hire and compound miners using Hire Miners Button.</p>
+                <p className="text-xl">Hire Miners using BNB.</p>
               </div>
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
@@ -259,6 +259,14 @@ const Mining = () => {
                 </span>
                 <p className="text-xl">
                   You can collect 4% rewards every two days.
+                </p>
+              </div>
+              <div className="flex items-center gap-4 py-2">
+                <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
+                  5
+                </span>
+                <p className="text-xl">
+                  You can hire and compound miners using Hire Miners Button.
                 </p>
               </div>
             </div>
