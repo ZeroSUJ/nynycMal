@@ -11,7 +11,7 @@ import { config } from '@/config'
 
 import ContextProvider from '@/context'
 
-import {Providers} from "./providers";
+import { Providers } from "./providers";
 
 import NextTopLoader from 'nextjs-toploader';
 
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className='dark'>
       <body>
-        <NextTopLoader 
+        <NextTopLoader
           color="#2299DD"
           initialPosition={0.08}
           crawlSpeed={200}
@@ -51,7 +51,9 @@ export default function RootLayout({
         />
         <Providers>
           <ToastProvider>
-            <ContextProvider initialState={initialState}>{children}</ContextProvider>
+            <ContextProvider initialState={initialState}>
+              {children}
+            </ContextProvider>
           </ToastProvider>
         </Providers>
       </body>

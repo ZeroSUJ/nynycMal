@@ -243,7 +243,7 @@ const Mining = () => {
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
                   2
                 </span>
-                <p className="text-xl">Hire Miners using BNB.</p>
+                <p className="text-xl">Hire Miners using BNB. You can hire and compound miners using Hire Miners Button.</p>
               </div>
               <div className="flex items-center gap-4 py-2">
                 <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full border-4 border-neutral-500 bg-neutral-700">
