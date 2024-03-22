@@ -158,6 +158,12 @@ export default function Home() {
               <h1 className="text-left font-bold text-md hidden xl:block">COMMUNITY</h1>
               <div className="items-start w-20 h-0.5 my-3 rounded-full hidden xl:block bg-gradient-to-r from-blue-400 via-pink-400 to-indigo-400"></div>
               <div className='flex flex-col items-center sm:flex-row gap-10 xl:gap-1 xl:block'>
+                <Link className="flex items-center gap-4 text-gray-400" href="mailto:nynycoins@gmail.com" target="_block">
+                  <div className="blue-effect glass-effect rounded-lg">
+                    <FaMailBulk className="h-10 w-10 p-2" />
+                  </div>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Gmail</h1>
+                </Link>
                 <Link className="flex items-center gap-4 text-gray-400" href="https://web.telegram.org/a/#-1002038937912" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaTelegram className="h-10 w-10 p-2" />
