@@ -162,7 +162,7 @@ export default function Home() {
                   <div className="blue-effect glass-effect rounded-lg">
                     <FaMailBulk className="h-10 w-10 p-2" />
                   </div>
-                  <h1 className="hidden xl:block hover:text-white hover:underline">Gmail</h1>
+                  <h1 className="hidden xl:block hover:text-white hover:underline">Nynyc</h1>
                 </Link>
                 <Link className="flex items-center gap-4 text-gray-400" href="https://web.telegram.org/a/#-1002038937912" target="_block">
                   <div className="blue-effect glass-effect rounded-lg">
