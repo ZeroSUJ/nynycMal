@@ -47,7 +47,6 @@ const Minting = () => {
   const erc20TokenAddress = "0x8A99D529d60f854ff323d4fFE284cc647CbDA5C3";
   const userAccount = useAccount();
   const { address, isConnected } = userAccount;
-  // const web3 = new Web3(window.ethereum);
   const [inputVal, setInputVal] = useState("");
   const contractAddress = nftmAbi.address;
   const contractAbi = nftmAbi.abi;
@@ -61,11 +60,6 @@ const Minting = () => {
   const [selectedList, setSelectedList] = useState([]);
   const [isActive, setActive] = useState(false);
 
-  // const url: string =
-  //   'https://sepolia.infura.io/v3/e14e866418594599bf7faa569a05b75b';
-  // // Configuration for Web3
-  // const web3: any = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
-  // const tokenAddress: string = '0xe1f14F40cd33E3e78de3846FD7eC6A51F55Bf42B';
   const {
     data: hash,
     isPending,
@@ -93,7 +87,6 @@ const Minting = () => {
           if (res.success === true) {
             console.log("Uploaded JSON to Pinata: ", res);
             resolve(res);
-            // return res.pinataURL;
           }
         })
         .catch((err) => {
@@ -103,7 +96,6 @@ const Minting = () => {
         });
     });
   };
-
 
   const _mint = async () => {
     console.log("upload:", uploadFileName);
@@ -382,12 +374,6 @@ const Minting = () => {
                     >
                       {isProcess ? "Processing..." : "Mint"}
                     </Button>
-                    {/* {isConfirming &&
-                      showToast(
-                        "info",
-                        "waiting for Transaction comfirming..."
-                      )}
-                    {error && showToast("error", error.message)} */}
                   </ModalFooter>
                 </>
               )}

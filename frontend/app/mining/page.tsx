@@ -152,7 +152,6 @@ const Mining = () => {
                 <input
                   className='w-full bg-transparent text-xl focus:outline-none'
                   type='number'
-                  step='0.01'
                   min='0.01'
                   max='200'
                   pattern='\d+(\.\d{0,2})?'
