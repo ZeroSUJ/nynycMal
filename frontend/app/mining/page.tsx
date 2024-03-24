@@ -43,6 +43,8 @@ import { showToast } from "@/helper/ToastNotify";
 const Mining = () => {
   const userAccount = useAccount();
   const { address, isConnected } = userAccount;
+  const [step, setStep] = useState(0.01);
+  const [bnb, setBnb] = useState("0.01");
 
   const {
     data: hash,
@@ -148,17 +150,30 @@ const Mining = () => {
                   <span>100 BNB</span>
                 </p>
               </div>
-              <div className="mt-3 flex items-center justify-between rounded-lg border-neutral-400 bg-[#27272a] px-4 py-3">
-                <input
-                  className='w-full bg-transparent text-xl focus:outline-none'
-                  type='number'
-                  min='0.01'
-                  max='200'
-                  pattern='\d+(\.\d{0,2})?'
-                  value={value === 0 ? '' : value.toString()} // Display empty string if value is 0
-                  onChange={handleChange}
-                  onClick={handleInputClick} // Add onClick event to clear input value
-                ></input>
+              <div className="flex justify-between items-center gap-1">
+              <Input
+                  color="default"
+                  size="lg"
+                  type="text" // Change type to text to allow decimal input
+                  min={0.01}
+                  max={200}
+                  step={step}
+                  onChange={e => {
+                    const enteredValue = e.target.value;
+                    // Check if the entered value is a valid number
+                    if (/^\d*\.?\d*$/.test(enteredValue)) {
+                      setBnb(enteredValue);
+                    }
+                  }}
+                  onBlur={e => {
+                    const parsedValue = parseFloat(bnb);
+                    if (parsedValue < 0.01 || parsedValue > 200) {
+                      alert("Input value must be between 0.01 and 200");
+                      setBnb("0");
+                    }
+                  }}
+                  value={bnb}
+                />
               </div>
               <p className="mt-3">ENTER BNB AMOUNT &amp; CLICK HIRE MINERS</p>
               <div className="mt-3 flex flex-col gap-4 lg:flex-row pt-5">
