@@ -203,7 +203,7 @@ const Mining = () => {
                 </Button>
                 <Link
                   className="w-full"
-                  href="https://bscscan.com/address/0x9b1d531f7aFf3404444Bc3aBBEDBB09A57B66E87#code"
+                  href="https://bscscan.com/address/0x6b4C359711D0b6b70f2179f64B4741858Ef12B41"
                   target="_block"
                 >
                   <Button
