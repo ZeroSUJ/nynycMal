@@ -156,7 +156,7 @@ const Mining = () => {
                   size="lg"
                   type="text" // Change type to text to allow decimal input
                   min={0.01}
-                  max={200}
+                  max={100}
                   step={step}
                   onChange={e => {
                     const enteredValue = e.target.value;
@@ -167,8 +167,8 @@ const Mining = () => {
                   }}
                   onBlur={e => {
                     const parsedValue = parseFloat(bnb);
-                    if (parsedValue < 0.01 || parsedValue > 200) {
-                      alert("Input value must be between 0.01 and 200");
+                    if (parsedValue < 0.01 || parsedValue > 100) {
+                      alert("Input value must be between 0.01 and 100");
                       setBnb("0");
                     }
                   }}
