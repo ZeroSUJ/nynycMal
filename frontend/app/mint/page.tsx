@@ -190,8 +190,8 @@ const Minting = () => {
     ", in " +
     season.name +
     " " +
-    environment.name +
-    " " +
+    // environment.name +
+    // " " +
     weather.name;
   console.log(prompt);
 
