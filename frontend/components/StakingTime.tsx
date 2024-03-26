@@ -5,6 +5,7 @@ import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
 import { formatEther, parseEther } from "viem";
 import { abi as stakingAbi, address as stakingAddress } from "@/contracts/Staking.json";
 import bep20Abi from "@/contracts/BEP20ABI.json";
+import { address as tokenAddress} from "@/contracts/NYNYCTokenAddress.json";
 import {
     type BaseError,
     useWaitForTransactionReceipt,
@@ -14,7 +15,6 @@ import {
 import { showToast } from "@/helper/ToastNotify";
 
 export default function StakingTime(props: any) {
-    const nynycTokenAddress = "0xb953bea4143A9cf15498a2D0b08674d4824E4ce8"
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const [value, setValue] = useState<number>(0);
 
@@ -28,7 +28,7 @@ export default function StakingTime(props: any) {
         console.log("_stake", value, props.deadline, typeof (props.deadlineDays));
         await writeContractAsync({
             abi: bep20Abi,
-            address: nynycTokenAddress,
+            address: `0x${tokenAddress}`,
             functionName: "approve",
             args: [`0x${stakingAddress}`, (value * 1e5).toString()],
         })

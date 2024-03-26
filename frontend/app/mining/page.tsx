@@ -28,7 +28,7 @@ export type DataType = { building_name: string };
 import { formatEther, parseEther } from "viem";
 import Miners from "@/components/miner";
 import { TokenBalance } from "@/components/TokenBalance";
-import ContractBalance from "@/components/ContractBalance";
+import MiningContractBalance from "@/components/MiningContractBalance";
 import { WalletBalance } from "@/components/WalletBalance";
 import GetMiner from "@/components/GetMiner";
 import { GetRewards } from "@/components/GetRewards";
@@ -236,7 +236,7 @@ const Mining = () => {
                   Token Balance: {isConnected ? <TokenBalance /> : "0"} NYNYC
                 </p>
                 <p className="text-xl">
-                  Contract Balance: <ContractBalance /> BNB
+                  Contract Balance: <MiningContractBalance /> BNB
                 </p>
                 <p className="text-xl">
                   Wallet Balance: {isConnected ? <WalletBalance /> : "0"} BNB
