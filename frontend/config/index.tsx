@@ -27,7 +27,7 @@ export const config = createConfig({
     [polygonMumbai.id]: http("https://polygon-mumbai.g.alchemy.com/v2/EcSrakQPOXrrDZq9rY3D_JPAlVe6QpBO",
     {key: 'EcSrakQPOXrrDZq9rY3D_JPAlVe6QpBO'}
     ),
-    [bscTestnet.id]: http(),
+    [bscTestnet.id]: http("https://bsc-testnet-rpc.publicnode.com"),
   },
   connectors: [
     walletConnect({ projectId, metadata, showQrModal: false }),

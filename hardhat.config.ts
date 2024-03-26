@@ -1,57 +1,55 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import "hardhat-deploy";
-
-import * as dotenv from "dotenv";
-
-dotenv.config();
+import {mnemonic, bscscanApiKey} from './secrets.json';
 
 const config: HardhatUserConfig = {
-  defaultNetwork: "localhost",    
-  namedAccounts: {
-    deployer: {
-      // By default, it will take the first Hardhat account as the deployer
-      default: 0,
-    },
-  },
+  solidity: "0.8.24",
   networks: {
-
-    hardhat: {
-      chainId: 1337
+    testnet: {
+      url: "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
+      chainId: 97,
+      gasPrice: 20000000000,
+      accounts: {mnemonic: mnemonic}
     },
-    sepolia: {
-      url: process.env.NEXT_APP_ALCHEMI_API_URL,
-      accounts: [ process.env.NEXT_APP_RRIVATE_KEY ]
-    },
-    mumbai: {
-      url: process.env.NEXT_APP_ALCHEMI_MUMBAI_API_URL,
-      accounts: [process.env.NEXT_APP_RRIVATE_KEY]
-    },
-    bsc: {
-      url: process.env.NEXT_APP_BSC_API,
-      accounts: [process.env.NEXT_APP_PRIVATE_KEY]
+    mainnet: {
+      url: "https://bsc-dataseed.bnbchain.org/",
+      chainId: 56,
+      gasPrice: 20000000000,
+      accounts: {mnemonic: mnemonic}
     }
   },
-  solidity: {
-    version: "0.8.20",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200
-      }
-    }
-  },
-  // verify: {
-  //   etherscan: {
-  //     apiKey: process.env.NEXT_APP_ETHERSCAN_KEY,
-  //   },
-  // },
   etherscan: {
-    apiKey: process.env.NEXT_APP_BSC_SCAN_KEY,
-  },
-  sourcify: {
-    enabled: true,
+    // Your API key for Etherscan
+    // Obtain one at https://bscscan.com/
+    apiKey: bscscanApiKey
   }
 };
-
 export default config;
+// module.exports = {
+//   defaultNetwork: "mainnet",
+//   networks: {
+//     localhost: {
+//       url: "http://127.0.0.1:8545"
+//     },
+//     hardhat: {
+//     },
+//   },
+//   solidity: {
+//   version: "0.8.9",
+//   settings: {
+//     optimizer: {
+//       enabled: true
+//     }
+//    }
+//   },
+//   paths: {
+//     sources: "./contracts",
+//     tests: "./test",
+//     cache: "./cache",
+//     artifacts: "./artifacts"
+//   },
+//   mocha: {
+//     timeout: 20000
+//   }
+// };
+
